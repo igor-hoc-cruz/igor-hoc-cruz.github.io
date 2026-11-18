@@ -29,6 +29,9 @@ and commit the generated pages together with the sources.
 
 ## Visual system
 
+Palette: obsidian black, machined gunmetal, ruby and gold. Two themes:
+Obsidian (default) and Platinum (polished silver), switched in the header.
+
 Four materials, each with one job:
 
 - **Neumorphism**: the ground. Panels, trays and switches are molded from the same plastic.
