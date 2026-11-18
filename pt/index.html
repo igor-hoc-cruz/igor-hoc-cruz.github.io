@@ -3,699 +3,356 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Igor Cruz · Portfólio</title>
-<meta name="description" content="Portfólio de Igor Henrique de Oliveira Cruz: CRM, automação, sites e IA aplicada ao marketing.">
+<title>Igor Cruz, operações de marketing e automação</title>
+<meta name="description" content="Portfólio de Igor Henrique de Oliveira Cruz: CRM, automação, sites e IA aplicada para times de marketing.">
 <link rel="canonical" href="https://igor-hoc-cruz.github.io/pt/">
 <link rel="alternate" hreflang="en" href="https://igor-hoc-cruz.github.io/">
 <link rel="alternate" hreflang="pt-BR" href="https://igor-hoc-cruz.github.io/pt/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Igor Cruz · Portfólio">
-<meta property="og:description" content="Portfólio de Igor Henrique de Oliveira Cruz: CRM, automação, sites e IA aplicada ao marketing.">
+<link rel="alternate" hreflang="x-default" href="https://igor-hoc-cruz.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Igor Cruz, operações de marketing e automação">
+<meta property="og:description" content="Portfólio de Igor Henrique de Oliveira Cruz: CRM, automação, sites e IA aplicada para times de marketing.">
 <meta property="og:url" content="https://igor-hoc-cruz.github.io/pt/">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#e2e8e4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#262c29" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500&display=swap">
-
-<style>
-  /*
-    Portfólio — Igor Henrique de Oliveira Cruz.
-    Conceito: cada caso é lido como um fluxo de automação (problema → o que fiz → resultado),
-    numa página editorial sóbria, com tipografia de interface e texto em serifa para leitura.
-  */
-  :root {
-    --paper: #f3f5f3;
-    --surface: #ffffff;
-    --ink: #142320;
-    --ink-soft: #4b5b57;
-    --rule: #d5ddd9;
-    --accent: #1d6b58;
-    --accent-soft: #e2efea;
-    --progress: #9a5b0c;
-    --progress-soft: #f6ead8;
-
-    --font-display: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
-    --font-body: "Newsreader", Georgia, "Times New Roman", serif;
-    --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
-
-    --step--1: 0.84rem;
-    --step-0: 1.05rem;
-    --step-1: 1.25rem;
-    --step-2: 1.6rem;
-    --step-3: clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #0f1716;
-      --surface: #16201e;
-      --ink: #e4ece9;
-      --ink-soft: #a3b3ae;
-      --rule: #2a3734;
-      --accent: #5cc3a5;
-      --accent-soft: #1b3330;
-      --progress: #e3a75a;
-      --progress-soft: #33281a;
-      color-scheme: dark;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --paper: #0f1716;
-    --surface: #16201e;
-    --ink: #e4ece9;
-    --ink-soft: #a3b3ae;
-    --rule: #2a3734;
-    --accent: #5cc3a5;
-    --accent-soft: #1b3330;
-    --progress: #e3a75a;
-    --progress-soft: #33281a;
-    color-scheme: dark;
-  }
-
-  /* ===== Base ===== */
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    line-height: 1.6;
-  }
-
-  .page {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 48px 64px;
-    display: grid;
-    gap: 56px;
-  }
-
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    text-wrap: balance;
-    margin: 0;
-    line-height: 1.15;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  a {
-    color: var(--accent);
-  }
-
-  a:focus-visible,
-  button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  /* ===== Cabeçalho ===== */
-
-  .intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: end;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 40px;
-  }
-
-  .intro h1 {
-    font-size: var(--step-3);
-    font-weight: 800;
-    margin-top: 10px;
-  }
-
-  .intro .role {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: var(--step-1);
-    color: var(--accent);
-    margin-top: 8px;
-  }
-
-  .intro .thesis {
-    margin-top: 20px;
-    max-width: 62ch;
-    color: var(--ink-soft);
-  }
-
-  .contact {
-    display: grid;
-    gap: 10px;
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-  }
-
-  .contact-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    border-bottom: 1px dashed var(--rule);
-    padding-bottom: 8px;
-  }
-
-  .contact-row span:first-child {
-    color: var(--ink-soft);
-  }
-
-  .contact-row span:last-child {
-    user-select: all;
-    text-align: right;
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  /* ===== Faixa de escala ===== */
-
-  .scale {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 24px;
-  }
-
-  .scale div {
-    display: grid;
-    gap: 4px;
-  }
-
-  .scale strong {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .scale span {
-    color: var(--ink-soft);
-    font-size: var(--step--1);
-    line-height: 1.4;
-  }
-
-  /* ===== Casos ===== */
-
-  .cases {
-    display: grid;
-    gap: 20px;
-  }
-
-  .section-head {
-    display: grid;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-
-  .section-head h2 {
-    font-size: var(--step-2);
-    font-weight: 700;
-  }
-
-  .case {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 28px;
-    display: grid;
-    gap: 20px;
-  }
-
-  .case-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px 16px;
-  }
-
-  .case-head h3 {
-    font-size: var(--step-1);
-    font-weight: 700;
-    min-width: 0;
-  }
-
-  .status {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    white-space: nowrap;
-  }
-
-  .status.in-progress {
-    background: var(--progress-soft);
-    color: var(--progress);
-  }
-
-  /* O trilho imita a ligação entre nós de um fluxo: três etapas lidas da esquerda para a direita. */
-  .flow {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    border-top: 2px solid var(--accent);
-  }
-
-  .flow > div {
-    position: relative;
-    padding: 18px 20px 0 0;
-    display: grid;
-    align-content: start;
-    gap: 6px;
-    min-width: 0;
-  }
-
-  .flow > div::before {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--accent);
-  }
-
-  .flow .eyebrow {
-    padding-left: 0;
-  }
-
-  .flow p {
-    font-size: 1rem;
-  }
-
-  .tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tools li {
-    list-style: none;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 2px 8px;
-  }
-
-  .tools {
-    margin: 0;
-    padding: 0;
-  }
-
-  /* ===== Como trabalho ===== */
-
-  .principles {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px 40px;
-  }
-
-  .principles h3 {
-    font-size: var(--step-0);
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .principles p {
-    color: var(--ink-soft);
-  }
-
-  /* ===== Rodapé ===== */
-
-  footer {
-    border-top: 1px solid var(--rule);
-    padding-top: 24px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
-    color: var(--ink-soft);
-    font-size: var(--step--1);
-  }
-
-  /* ===== Telas estreitas ===== */
-
-  @media (max-width: 760px) {
-    .page {
-      padding-block: 32px 48px;
-      gap: 40px;
-    }
-
-    .intro {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 28px;
-    }
-
-    .scale {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .case {
-      padding: 20px;
-    }
-
-    /* No celular o trilho fica vertical, com a linha à esquerda. */
-    .flow {
-      grid-template-columns: minmax(0, 1fr);
-      border-top: 0;
-      border-left: 2px solid var(--accent);
-      gap: 18px;
-      margin-left: 6px;
-    }
-
-    .flow > div {
-      padding: 0 0 0 20px;
-    }
-
-    .flow > div::before {
-      top: 4px;
-      left: -7px;
-    }
-
-    .principles {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  .status.personal {
-    background: transparent;
-    color: var(--ink-soft);
-    border: 1px solid var(--rule);
-  }
-
-  .contact-row a {
-    color: var(--accent);
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script>
+  /* Applies the saved theme before first paint, so the page never flashes. */
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+<script src="../assets/site.js" defer></script>
 </head>
 <body>
-<main class="page">
-
-  <!-- ===== Apresentação ===== -->
-  <header class="intro">
-    <div>
-      <p class="eyebrow">Portfólio · 2026</p>
-      <h1>Igor Henrique de Oliveira Cruz</h1>
-      <p class="role">Marketing digital, CRM, automação e IA aplicada</p>
-      <p class="thesis">
-        Conecto a página de captação ao atendimento: construo os sites e formulários,
-        levo cada lead até o CRM pelo caminho certo, cuido da entrega dos e-mails e
-        meço o que funciona. Abaixo estão casos reais do meu trabalho atual numa
-        corretora de seguros nos EUA que atende famílias brasileiras e hispânicas,
-        sem dados de clientes.
-      </p>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="page">
+<header class="top glass">
+  <a class="mark" href="./" aria-label="Igor Cruz">IC</a>
+  <nav class="top-links" aria-label="Seções">
+    <a href="#work">Trabalhos</a>
+    <a href="#toolbox">Ferramentas</a>
+    <a href="#contact">Contato</a>
+  </nav>
+  <div class="top-controls">
+    <nav class="seg" aria-label="Idioma">
+      <a class="seg-btn" href="../" hreflang="en" lang="en" title="English">EN</a><a class="seg-btn" aria-current="page" href="./" lang="pt-BR">PT</a>
+    </nav>
+    <button class="switch theme-switch" type="button" aria-pressed="false" aria-label="Modo escuro"><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="hero-text">
+      <h1 id="hero-name">Igor Cruz</h1>
+      <p class="hero-line">Eu conecto a página de captação ao time de vendas.</p>
+      <p class="hero-intro">Trabalho onde o marketing encontra o encanamento por trás dele. Construo as páginas e os formulários, garanto que cada lead chegue ao CRM com a origem certa, mantenho os e-mails longe do spam e meço o que de fato funciona.</p>
+<p class="hero-intro">Hoje faço isso numa corretora de seguros nos EUA que atende famílias brasileiras e hispânicas. Os casos abaixo são reais e não têm dados de clientes.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:Igorhoc0@gmail.com">Mandar e-mail</a>
+        <button class="btn copy-email" type="button" data-email="Igorhoc0@gmail.com" data-done="Copiado">Copiar endereço</button>
+        <a class="btn btn-quiet" href="#work">Ver os trabalhos</a>
+      </div>
+      <p class="hero-facts">Moro em Jundiaí, SP. Inglês fluente, português nativo, espanhol de trabalho.</p>
     </div>
-
-    <div class="contact" aria-label="Contato">
-      <div class="contact-row"><span>Cidade</span><span>Jundiaí, SP</span></div>
-      <div class="contact-row"><span>E-mail</span><span>Igorhoc0@gmail.com</span></div>
-      <div class="contact-row"><span>GitHub</span><span><a href="https://github.com/igor-hoc-cruz">igor-hoc-cruz</a></span></div>
-      <div class="contact-row"><span>English</span><span><a href="../" hreflang="en" lang="en">View in English</a></span></div>
-      <div class="contact-row"><span>Idiomas</span><span>PT · EN fluente · ES</span></div>
+    <div class="stage">
+      <span class="clay-shape clay-orb" aria-hidden="true"></span>
+      <span class="clay-shape clay-pill" aria-hidden="true"></span>
+      <span class="clay-shape clay-dot" aria-hidden="true"></span>
+      <figure class="board glass">
+        <div class="board-track">
+          <div class="groove" aria-hidden="true"><span class="lead"></span></div>
+          <ol class="nodes">
+        <li class="node" style="--i:0">
+          <span class="knob" aria-hidden="true"><span class="led"></span></span>
+          <span class="node-text"><strong>Páginas</strong><span>60+ páginas em 3 idiomas</span></span>
+        </li>
+        <li class="node" style="--i:1">
+          <span class="knob" aria-hidden="true"><span class="led"></span></span>
+          <span class="node-text"><strong>Anúncios e formulários</strong><span>Meta, TikTok e formulários do site</span></span>
+        </li>
+        <li class="node" style="--i:2">
+          <span class="knob" aria-hidden="true"><span class="led"></span></span>
+          <span class="node-text"><strong>CRM</strong><span>Roteado, sem duplicados, com alerta</span></span>
+        </li>
+        <li class="node" style="--i:3">
+          <span class="knob" aria-hidden="true"><span class="led"></span></span>
+          <span class="node-text"><strong>Time de vendas</strong><span>130 mil e-mails de acompanhamento por semana</span></span>
+        </li>
+          </ol>
+        </div>
+        <figcaption>O caminho de um lead pelo trabalho que eu faço</figcaption>
+      </figure>
     </div>
-  </header>
-
-  <!-- ===== Escala do trabalho ===== -->
-  <section class="scale" aria-label="Escala do trabalho">
-    <div><strong>3 idiomas</strong><span>site institucional e páginas de produto em PT, ES e EN</span></div>
-    <div><strong>60+ páginas</strong><span>migradas e publicadas em WordPress e Elementor</span></div>
-    <div><strong>130 mil</strong><span>e-mails por semana no funil da temporada de inscrição</span></div>
-    <div><strong>13 áreas</strong><span>atendidas por um sistema interno de agentes de IA</span></div>
   </section>
-
-  <!-- ===== Casos ===== -->
-  <section class="cases" aria-labelledby="casos-titulo">
+  <section class="work" id="work" aria-labelledby="work-title">
     <div class="section-head">
-      <p class="eyebrow">Casos</p>
-      <h2 id="casos-titulo">Problema, o que fiz e o resultado</h2>
+      <h2 id="work-title">Trabalhos</h2>
+      <p>Nove casos, cada um com o problema que recebi e o que aconteceu depois. Aperte um caso para abrir.</p>
     </div>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Entregabilidade de e-mail em escala</h3>
-        <span class="status">No ar</span>
+    <div class="filters" role="group" aria-label="Filtrar os casos">
+        <button class="chip-switch" type="button" data-filter="all" aria-pressed="true">Todos</button>
+        <button class="chip-switch" type="button" data-filter="automation" aria-pressed="false">Automação</button>
+        <button class="chip-switch" type="button" data-filter="web" aria-pressed="false">Sites</button>
+        <button class="chip-switch" type="button" data-filter="data" aria-pressed="false">Dados</button>
+        <button class="chip-switch" type="button" data-filter="email" aria-pressed="false">E-mail</button>
+        <button class="chip-switch" type="button" data-filter="ai" aria-pressed="false">IA</button>
+        <button class="chip-switch" type="button" data-filter="personal" aria-pressed="false">Pessoal</button>
+    </div>
+    <p class="showing" aria-live="polite" data-template="Mostrando {n} de {total}"></p>
+    <div class="cases">
+    <article class="case case-wide" id="case-deliverability" data-tag="email">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">E-mail</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Volume alto de e-mails com taxa de rejeição elevada e um domínio com registro DMARC duplicado, que anulava a política de proteção.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Fiz backup do DNS, unifiquei o DMARC, criei o caminho de retorno personalizado e suprimi milhares de endereços inválidos e domínios problemáticos das listas.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Remetente com SPF, DKIM, DMARC e caminho de retorno autenticados, e aquecimento do domínio mantido no limite de 14 mil envios por dia.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-deliverability-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Tirando um remetente de alto volume do buraco</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Autentiquei o remetente e limpei as listas. O domínio hoje sustenta o limite de aquecimento de 14 mil envios por dia.</p>
+      <div class="case-body" id="case-deliverability-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Muito e-mail saindo, taxa de rejeição alta e um domínio com dois registros DMARC que se anulavam.</p></li>
+            <li><h4>O que eu fiz</h4><p>Fiz backup do DNS, unifiquei o DMARC, criei o caminho de retorno personalizado e suprimi milhares de endereços inválidos e domínios problemáticos.</p></li>
+            <li><h4>O que mudou</h4><p>O remetente passa nas checagens de SPF, DKIM, DMARC e caminho de retorno, e o aquecimento segue estável em 14 mil envios por dia.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>GoHighLevel</li><li>Zoho Marketing Automation</li><li>Cloudflare DNS</li><li>SPF, DKIM and DMARC</li></ul>
       </div>
-      <ul class="tools">
-        <li>GoHighLevel</li><li>Zoho Marketing Automation</li><li>Cloudflare DNS</li><li>DMARC · SPF · DKIM</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Leads de anúncios que sumiam antes de virar negócio</h3>
-        <span class="status">No ar</span>
+    <article class="case" id="case-lost-leads" data-tag="automation">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">Automação</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Metade dos leads de uma campanha da Meta não virava oportunidade: o CRM recusava, sem aviso, quem já tinha o telefone cadastrado.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Diagnostiquei as execuções no n8n e reescrevi a rota com tratamento de duplicados, reentrada pelo produto novo, alertas e o padrão oficial de campos de entrada.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Os leads perdidos foram recuperados como negócios, cada falha passou a gerar alerta e todas as fontes passaram a enviar canal, UTMs e IDs do anúncio.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-lost-leads-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Leads de anúncio que sumiam antes de virar negócio</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Metade dos leads de uma campanha se perdia sem deixar rastro. Descobri o motivo e refiz a rota.</p>
+      <div class="case-body" id="case-lost-leads-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>O CRM recusava, sem aviso, quem já tinha o telefone cadastrado, e metade dos leads de uma campanha da Meta nunca virava oportunidade.</p></li>
+            <li><h4>O que eu fiz</h4><p>Rastreei as execuções no n8n e refiz a rota com tratamento de duplicados, reentrada pelo produto novo, alertas e o padrão oficial de campos da empresa.</p></li>
+            <li><h4>O que mudou</h4><p>Os leads perdidos voltaram como negócios, toda falha gera alerta e todas as fontes enviam canal, UTMs e IDs do anúncio.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>n8n</li><li>Zapier</li><li>Zoho CRM API</li><li>Meta Lead Ads</li></ul>
       </div>
-      <ul class="tools">
-        <li>n8n</li><li>Zapier</li><li>Zoho CRM API</li><li>Meta Lead Ads</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Origem dos leads e custo por canal</h3>
-        <span class="status in-progress">Em andamento</span>
+    <article class="case" id="case-lead-source" data-tag="data">
+      <div class="case-meta">
+        <span class="status" data-status="progress"><span class="led" aria-hidden="true"></span>Em andamento</span>
+        <span class="case-tag">Dados</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Quase nenhum lead chegava ao CRM com origem registrada, então não havia custo por lead nem por cliente em cada canal.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Encontrei a causa: o formulário de cotação roda dentro de um iframe que não recebe as UTMs da página. Desenhei um fluxo separado, somente leitura, que classifica o canal de cada lead.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Lógica de classificação pronta e testada, com destino no Zoho Analytics, sem alterar nenhum fluxo que já funciona em produção.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-lead-source-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">De onde vêm, de verdade, os nossos leads?</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Quase nenhum lead tinha origem registrada. A causa era um iframe; a solução é um classificador que só lê.</p>
+      <div class="case-body" id="case-lead-source-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Os leads chegavam ao CRM sem origem, e ninguém sabia quanto custava um lead ou um cliente em cada canal.</p></li>
+            <li><h4>O que eu fiz</h4><p>Achei a causa: o formulário de cotação roda dentro de um iframe que não enxerga as UTMs da página. Desenhei um fluxo separado, só de leitura, que classifica o canal de cada lead.</p></li>
+            <li><h4>O que mudou</h4><p>Lógica de classificação pronta e testada, gravando no Zoho Analytics, sem mexer em nenhum fluxo de produção.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>n8n API</li><li>JavaScript</li><li>Zoho Analytics</li><li>Automated tests</li></ul>
       </div>
-      <ul class="tools">
-        <li>n8n API</li><li>JavaScript</li><li>Zoho Analytics</li><li>Testes automatizados</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Site trilíngue e páginas de captação</h3>
-        <span class="status">No ar</span>
+    <article class="case" id="case-trilingual-site" data-tag="web">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">Sites</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Site institucional em plataforma antiga, sem versões completas em espanhol e inglês, lento no celular e sem eventos de conversão confiáveis.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Migrei mais de 60 páginas para WordPress e Elementor, otimizei imagens e vídeo, configurei SEO e cartões de compartilhamento e criei páginas de e-book e guias com formulário.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Site em três idiomas com URLs preservadas e cada download de material registrado como evento de conversão para a Meta via Google Tag Manager.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-trilingual-site-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Um site, três idiomas e nada perdido no caminho</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Levei mais de 60 páginas para o WordPress em português, espanhol e inglês, mantive cada URL e medi cada download.</p>
+      <div class="case-body" id="case-trilingual-site-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>O site estava numa plataforma antiga, sem versões completas em espanhol e inglês, lento no celular e sem eventos de conversão confiáveis.</p></li>
+            <li><h4>O que eu fiz</h4><p>Migrei mais de 60 páginas para WordPress e Elementor, otimizei imagens e vídeo, configurei SEO e cartões de compartilhamento e criei páginas de e-book e guias com formulário.</p></li>
+            <li><h4>O que mudou</h4><p>Site em três idiomas com as URLs preservadas e cada download de material registrado como conversão da Meta via Google Tag Manager.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>WordPress</li><li>Elementor</li><li>HTML, CSS and JS</li><li>Google Tag Manager</li><li>Meta Pixel</li></ul>
       </div>
-      <ul class="tools">
-        <li>WordPress</li><li>Elementor</li><li>HTML · CSS · JS</li><li>Google Tag Manager</li><li>Meta Pixel</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Dados do TikTok Ads no painel da empresa</h3>
-        <span class="status">No ar</span>
+    <article class="case" id="case-tiktok-data" data-tag="data">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">Dados</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Anúncios reprovados sem motivo claro e números de campanha presos no painel do TikTok, fora dos relatórios da empresa.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Identifiquei a regra de categoria restrita que reprovava os anúncios, abri a revisão de elegibilidade e obtive aprovação de um app da Marketing API com escopos de leitura.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Coleta diária com 81 colunas de campanhas, grupos e anúncios alimentando o Zoho Analytics, e análise de criativos que mostrou quais mensagens passam na política.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-tiktok-data-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Trazendo o TikTok Ads para os relatórios da empresa</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Consegui aprovar um app da Marketing API e colocar 81 colunas de dados de campanha entrando todo dia.</p>
+      <div class="case-body" id="case-tiktok-data-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Os anúncios eram reprovados sem motivo claro e os números de campanha ficavam presos no TikTok, longe dos relatórios da empresa.</p></li>
+            <li><h4>O que eu fiz</h4><p>Identifiquei a regra de categoria restrita por trás das reprovações, abri a revisão de elegibilidade e aprovei um app da Marketing API só com escopos de leitura.</p></li>
+            <li><h4>O que mudou</h4><p>Coleta diária de 81 colunas de campanhas, grupos e anúncios no Zoho Analytics, e uma análise de criativos que mostra quais mensagens passam na política.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>TikTok Marketing API</li><li>OAuth</li><li>n8n</li><li>Zoho Analytics</li></ul>
       </div>
-      <ul class="tools">
-        <li>TikTok Marketing API</li><li>OAuth</li><li>n8n</li><li>Zoho Analytics</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Portal de RH com contratos e assinatura eletrônica</h3>
-        <span class="status">No ar</span>
+    <article class="case" id="case-hr-portal" data-tag="web">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">Sites</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Contratos de prestadores e onboarding feitos à mão, em documentos soltos e sem histórico.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Desenvolvi plugins WordPress próprios para o RH: acessos, pedidos, auditoria e envio de contratos preenchidos para assinatura no Zoho Sign, testados localmente antes de cada versão.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Portal no ar dentro do site da empresa, sem servidor extra, com histórico reutilizável de cada contrato.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-hr-portal-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Um portal de RH que mora dentro do site da empresa</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Plugins WordPress próprios para onboarding, pedidos e contratos assinados pelo Zoho Sign.</p>
+      <div class="case-body" id="case-hr-portal-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Contratos de prestadores e onboarding eram feitos à mão, em documentos soltos e sem histórico.</p></li>
+            <li><h4>O que eu fiz</h4><p>Escrevi plugins WordPress para o RH: acessos, pedidos, trilha de auditoria e contratos preenchidos enviados para assinatura no Zoho Sign. Cada versão foi testada localmente antes.</p></li>
+            <li><h4>O que mudou</h4><p>O portal roda dentro do site que já existia, sem servidor extra, e cada contrato guarda um histórico reaproveitável.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>PHP</li><li>WordPress REST API</li><li>Zoho Sign API</li><li>JavaScript</li></ul>
       </div>
-      <ul class="tools">
-        <li>PHP</li><li>WordPress REST</li><li>Zoho Sign API</li><li>JavaScript</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>CRM leve para uma equipe comercial</h3>
-        <span class="status">No ar</span>
+    <article class="case" id="case-light-crm" data-tag="automation">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">Automação</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Uma equipe pequena e não técnica controlava o funil em planilhas e subia listas de contatos manualmente na plataforma de marketing.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Construí um web app em Google Apps Script com funil, reuniões, comissões e uma tela que envia planilhas para o GoHighLevel em lotes, respeitando o limite da API.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Sistema publicado, cada pessoa com sua própria planilha e mais de 80 testes automatizados cobrindo regras, métricas e envios.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-light-crm-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Um CRM que uma equipe não técnica de fato usa</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Um web app em Google Apps Script com funil, reuniões e comissões, coberto por mais de 80 testes automatizados.</p>
+      <div class="case-body" id="case-light-crm-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Uma equipe comercial pequena controlava o funil em planilhas e subia listas de contatos na mão para a plataforma de marketing.</p></li>
+            <li><h4>O que eu fiz</h4><p>Construí um web app com funil, reuniões, comissões e uma tela que envia planilhas para o GoHighLevel em lotes, dentro do limite da API.</p></li>
+            <li><h4>O que mudou</h4><p>Cada pessoa mantém a própria planilha, e mais de 80 testes automatizados cobrem regras, métricas e envios.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>Google Apps Script</li><li>GoHighLevel API</li><li>JavaScript</li></ul>
       </div>
-      <ul class="tools">
-        <li>Google Apps Script</li><li>GoHighLevel API</li><li>JavaScript</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Operação de marketing com agentes de IA</h3>
-        <span class="status">No ar</span>
+    <article class="case case-wide" id="case-ai-agents" data-tag="ai">
+      <div class="case-meta">
+        <span class="status" data-status="live"><span class="led" aria-hidden="true"></span>No ar</span>
+        <span class="case-tag">IA</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Muitos pedidos de marketing para uma equipe enxuta, com risco de a IA publicar, gastar ou alterar dados sem controle.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Criei um sistema interno que distribui pedidos entre 13 áreas, exige aprovação humana antes de qualquer ação externa e usa bases de conhecimento da marca e da Zoho.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Redução de 60% a 87% no consumo de tokens por pedido, regras de compliance aplicadas por padrão e critérios de entrega verificáveis em cada tarefa.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-ai-agents-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Operação de marketing com agentes de IA, e um humano com a chave</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Pedidos de 13 áreas atendidos por agentes de IA, com a minha aprovação antes de qualquer coisa sair de casa.</p>
+      <div class="case-body" id="case-ai-agents-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Mais pedidos de marketing do que uma equipe enxuta dava conta, e um risco real de a IA publicar, gastar ou alterar dados sozinha.</p></li>
+            <li><h4>O que eu fiz</h4><p>Criei um sistema interno que distribui pedidos entre 13 áreas, exige aprovação humana antes de qualquer ação externa e trabalha com bases de conhecimento da marca e da Zoho.</p></li>
+            <li><h4>O que mudou</h4><p>O consumo de tokens por pedido caiu de 60% a 87%, as regras de compliance valem por padrão e toda tarefa termina com checagens verificáveis.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>Claude and Claude Code</li><li>MCP connectors</li><li>Scheduled tasks</li><li>Knowledge bases</li></ul>
       </div>
-      <ul class="tools">
-        <li>Claude e Claude Code</li><li>Conectores MCP</li><li>Tarefas agendadas</li><li>Bases de conhecimento</li>
-      </ul>
     </article>
-
-    <article class="case">
-      <div class="case-head">
-        <h3>Personagem 3D para desktop que roda 100% offline</h3>
-        <span class="status personal">Projeto pessoal</span>
+    <article class="case case-wide" id="case-desktop-character" data-tag="personal">
+      <div class="case-meta">
+        <span class="status" data-status="personal"><span class="led" aria-hidden="true"></span>Projeto pessoal</span>
+        <span class="case-tag">Pessoal</span>
       </div>
-      <div class="flow">
-        <div>
-          <p class="eyebrow">Problema</p>
-          <p>Quis aprender 3D em tempo real e voz de ponta a ponta: um personagem animado na área de trabalho que reage e fala, sem APIs pagas nem serviços em nuvem.</p>
-        </div>
-        <div>
-          <p class="eyebrow">O que fiz</p>
-          <p>Construí um app em Electron que renderiza um personagem VRM com three.js, com cerca de 300 ações programadas e 98 movimentos, e uma vista de rosto em close que sincroniza lábios, piscadas e olhar com a voz. Um pipeline em Python comanda o Blender para renderizar conjuntos de animação.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Resultado</p>
-          <p>Tudo roda num notebook: a fala é gerada localmente com um modelo de voz open source, e o rosto anima em sincronia, em tempo real.</p>
-        </div>
+      <h3 class="case-title">
+        <button class="case-toggle" type="button" aria-expanded="true" aria-controls="case-desktop-character-body" data-open="Abrir caso" data-close="Fechar caso">
+          <span class="case-title-text">Um personagem 3D de desktop que roda 100% offline</span>
+          <span class="case-knob" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <p class="case-summary">Algo que construo para mim: um personagem que reage e fala, com sincronia labial e sem nada na nuvem.</p>
+      <div class="case-body" id="case-desktop-character-body">
+        <ol class="steps">
+            <li><h4>O problema</h4><p>Eu queria aprender 3D em tempo real e voz de ponta a ponta, sem APIs pagas nem nada rodando na nuvem.</p></li>
+            <li><h4>O que eu fiz</h4><p>Construí um app em Electron que renderiza um personagem VRM com three.js, com cerca de 300 ações programadas e 98 movimentos, e uma vista de rosto em close que sincroniza lábios, piscadas e olhar com a voz. Um pipeline em Python comanda o Blender para renderizar as animações.</p></li>
+            <li><h4>O que mudou</h4><p>Tudo roda num notebook. A fala é gerada localmente com um modelo de voz open source, e o rosto acompanha em tempo real.</p></li>
+        </ol>
+        <ul class="tools" aria-label="Ferramentas usadas"><li>Electron</li><li>three.js and three-vrm</li><li>Blender Python API</li><li>Kokoro TTS</li><li>Node.js</li></ul>
       </div>
-      <ul class="tools">
-        <li>Electron</li><li>three.js · three-vrm</li><li>Blender Python API</li><li>Kokoro TTS</li><li>Node.js</li>
-      </ul>
     </article>
+    </div>
   </section>
-
-  <!-- ===== Forma de trabalho ===== -->
-  <section aria-labelledby="como-titulo">
+  <section class="toolbox" id="toolbox" aria-labelledby="toolbox-title">
     <div class="section-head">
-      <p class="eyebrow">Como trabalho</p>
-      <h2 id="como-titulo">Princípios que aparecem em todos os casos</h2>
+      <h2 id="toolbox-title">Ferramentas</h2>
+      <p>O que eu uso quase todo dia. Escolho a ferramenta depois de entender o problema, não antes.</p>
     </div>
-    <div class="principles">
-      <div>
-        <h3>Entender antes de escolher a ferramenta</h3>
-        <p>Começo pelo que a pessoa precisa e pelo dado que falta. A ferramenta vem depois.</p>
+    <div class="tray">
+      <div class="tool-group">
+        <h3>Automação e CRM</h3>
+        <ul><li>n8n</li><li>Zapier</li><li>Zoho CRM</li><li>Zoho Sign</li><li>GoHighLevel</li><li>Google Apps Script</li></ul>
       </div>
-      <div>
-        <h3>Não quebrar o que já funciona</h3>
-        <p>Mudanças grandes entram ao lado do que está em produção, com backup e caminho de volta.</p>
+      <div class="tool-group">
+        <h3>Sites</h3>
+        <ul><li>WordPress</li><li>Elementor</li><li>HTML e CSS</li><li>JavaScript</li><li>PHP</li></ul>
       </div>
-      <div>
-        <h3>Pronto é o que foi verificado</h3>
-        <p>Cada entrega tem critérios concretos de conclusão e só é dada como feita depois de testada.</p>
+      <div class="tool-group">
+        <h3>Anúncios e dados</h3>
+        <ul><li>Meta Ads</li><li>TikTok Ads API</li><li>Google Tag Manager</li><li>Zoho Analytics</li></ul>
       </div>
-      <div>
-        <h3>Dados de clientes protegidos</h3>
-        <p>Sem dados pessoais em código ou relatórios, acesso mínimo nas integrações e aprovação antes de agir.</p>
+      <div class="tool-group">
+        <h3>E-mail</h3>
+        <ul><li>Zoho Marketing Automation</li><li>SPF, DKIM e DMARC</li><li>Higiene de listas</li></ul>
+      </div>
+      <div class="tool-group">
+        <h3>IA e código</h3>
+        <ul><li>Claude e Claude Code</li><li>Conectores MCP</li><li>Python</li><li>Node.js</li><li>Git</li></ul>
       </div>
     </div>
   </section>
-
-  <footer>
-    <span>Igor Henrique de Oliveira Cruz · Jundiaí, SP</span>
-    <span>Casos sem dados de clientes. Detalhes técnicos sob pedido.</span>
-  </footer>
-
+  <section class="principles" aria-labelledby="how-title">
+    <h2 id="how-title">Como eu trabalho</h2>
+    <ul>
+      <li><h3>Entender antes de escolher</h3><p>Começo pelo que as pessoas precisam e pelo dado que falta. A ferramenta vem depois.</p></li>
+      <li><h3>Não quebrar o que funciona</h3><p>Mudança grande entra ao lado da produção, com backup e caminho de volta.</p></li>
+      <li><h3>Pronto é o que foi checado</h3><p>Toda entrega tem critérios concretos de conclusão e só conta depois de testada.</p></li>
+      <li><h3>Dado de cliente protegido</h3><p>Nada de dado pessoal em código ou relatório, o mínimo de acesso nas integrações e aprovação antes de agir.</p></li>
+    </ul>
+  </section>
+  <section class="stage stage-contact" id="contact" aria-labelledby="contact-title">
+    <span class="clay-shape clay-orb" aria-hidden="true"></span>
+    <span class="clay-shape clay-pill" aria-hidden="true"></span>
+    <div class="contact glass">
+      <h2 id="contact-title">Procurando alguém para operações de marketing, CRM ou automação?</h2>
+      <p>Me conte o que está quebrando ou o que precisa ser construído, e eu conto como atacaria o problema.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:Igorhoc0@gmail.com">Igorhoc0@gmail.com</a>
+        <button class="btn copy-email" type="button" data-email="Igorhoc0@gmail.com" data-done="Copiado">Copiar endereço</button>
+        <a class="btn btn-quiet" href="https://github.com/igor-hoc-cruz">Perfil no GitHub</a>
+      </div>
+    </div>
+  </section>
 </main>
+<footer class="foot">
+  <p>Casos compartilhados sem dados de clientes. Atualizado em novembro de 2026.</p>
+  <p>Igor Henrique de Oliveira Cruz</p>
+</footer>
+</div>
 </body>
 </html>

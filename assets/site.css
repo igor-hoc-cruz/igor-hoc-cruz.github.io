@@ -1,0 +1,792 @@
+﻿/*
+ * site.css — Igor Cruz portfolio
+ * ---------------------------------------------------------------------------
+ * Four materials, one rule each, so the page reads as one object:
+ *
+ *   Neumorphism   the ground. Panels, trays and switches are molded out of
+ *                 the same sage plastic: raised = light top-left, shadow
+ *                 bottom-right; pressed = the same pair inset.
+ *   Claymorphism  things you can press or that have volume: buttons, knobs,
+ *                 the lead ball, tool chips and the 3D clay shapes. Puffy,
+ *                 with an inner highlight and an inner shade.
+ *   Glassmorphism things that float above the ground: the header ornament,
+ *                 the lead board and the contact window. Frosted, so the clay
+ *                 shapes behind them glow through.
+ *   Spatial UI    depth. Glass windows tilt toward the pointer, clay shapes
+ *                 move at different depths (parallax), and cases lift toward
+ *                 you on hover or focus. Only user-driven; off with
+ *                 "reduce motion".
+ *
+ * Readability guard: text never depends on a shadow or on glass. Colours pass
+ * WCAG AA on every surface; focus is a solid cobalt ring.
+ *
+ * Sections
+ *   1. Tokens (light, dark)      6. Hero, stage and lead board
+ *   2. Base                      7. Work: filters and case keys
+ *   3. Materials                 8. Toolbox, principles, contact
+ *   4. Buttons and switches      9. Small screens, reduced motion
+ *   5. Header ornament
+ * ---------------------------------------------------------------------------
+ */
+
+/* ===== 1. Tokens ===== */
+
+:root {
+  /* Ground (neumorphic plastic) */
+  --base: #e2e8e4;
+  --hi: #fbfffd;
+  --lo: #b6c2bb;
+  --well: #d8dfda;
+  --shade: 70 92 82;              /* rgb triplet for coloured soft shadows */
+
+  /* Ink */
+  --ink: #1b2520;
+  --ink-soft: #46554e;            /* 6.2:1 on --base */
+  --accent: #2446c4;              /* cobalt: links, focus, "on" */
+  --accent-ink: #ffffff;
+
+  /* Clay pigments */
+  --clay-cobalt: #4a68e8;
+  --clay-periwinkle: #8fa3ff;
+  --clay-apricot: #ffb26a;
+  --clay-mint: #7fd4ad;
+  --clay-white: #f3f7f4;
+
+  /* Status lights */
+  --signal: #f19a1a;
+  --live: #2f9a62;
+  --progress: #d58a0c;
+  --off: #8d9a93;
+
+  /* Glass */
+  --glass: rgb(255 255 255 / 0.4);
+  --glass-edge: rgb(255 255 255 / 0.75);
+  --glass-shine: rgb(255 255 255 / 0.95);
+
+  /* Neumorphic shadows */
+  --raise-lg: 14px 14px 30px var(--lo), -12px -12px 28px var(--hi);
+  --raise: 8px 8px 18px var(--lo), -7px -7px 16px var(--hi);
+  --raise-sm: 4px 4px 9px var(--lo), -4px -4px 9px var(--hi);
+  --press: inset 6px 6px 12px var(--lo), inset -6px -6px 12px var(--hi);
+  --press-sm: inset 3px 3px 6px var(--lo), inset -3px -3px 6px var(--hi);
+
+  /* Spatial lift: a raised key pulled closer to the viewer */
+  --lift: 16px 22px 40px var(--lo), -10px -10px 24px var(--hi);
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --size-small: 0.9rem;
+  --size-body: 1.0625rem;
+  --size-lead: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
+  --size-h2: clamp(1.9rem, 1.5rem + 1.6vw, 2.7rem);
+  --size-h1: clamp(3.4rem, 2.2rem + 6vw, 7.2rem);
+
+  /* Shape: bigger things get softer corners */
+  --r-window: 36px;
+  --r-key: 24px;
+  --r-btn: 18px;
+  --r-pill: 999px;
+
+  --page: 1180px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --ease-spatial: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Dark: the same objects, molded in graphite, with lamps on */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --base: #262c29;
+    --hi: #313935;
+    --lo: #181c1a;
+    --well: #212725;
+    --shade: 0 0 0;
+    --ink: #e6ede9;
+    --ink-soft: #aab8b1;
+    --accent: #a3b5ff;
+    --accent-ink: #10173a;
+    --clay-cobalt: #5a76f0;
+    --clay-periwinkle: #6f83e6;
+    --clay-apricot: #e99a52;
+    --clay-mint: #57b88d;
+    --clay-white: #3a433e;
+    --signal: #f5b445;
+    --live: #5ccf8f;
+    --progress: #f0ac3a;
+    --off: #6f7b75;
+    --glass: rgb(44 52 48 / 0.5);
+    --glass-edge: rgb(255 255 255 / 0.1);
+    --glass-shine: rgb(255 255 255 / 0.14);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --base: #262c29;
+  --hi: #313935;
+  --lo: #181c1a;
+  --well: #212725;
+  --shade: 0 0 0;
+  --ink: #e6ede9;
+  --ink-soft: #aab8b1;
+  --accent: #a3b5ff;
+  --accent-ink: #10173a;
+  --clay-cobalt: #5a76f0;
+  --clay-periwinkle: #6f83e6;
+  --clay-apricot: #e99a52;
+  --clay-mint: #57b88d;
+  --clay-white: #3a433e;
+  --signal: #f5b445;
+  --live: #5ccf8f;
+  --progress: #f0ac3a;
+  --off: #6f7b75;
+  --glass: rgb(44 52 48 / 0.5);
+  --glass-edge: rgb(255 255 255 / 0.1);
+  --glass-shine: rgb(255 255 255 / 0.14);
+  color-scheme: dark;
+}
+
+/* ===== 2. Base ===== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  /* One light source, top-left, shared by every shadow on the page */
+  background:
+    radial-gradient(1200px 700px at 8% -10%, var(--hi), transparent 60%),
+    var(--base);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.62;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 10px 16px;
+  border-radius: var(--r-btn);
+  background: var(--base);
+  box-shadow: var(--raise);
+  z-index: 50;
+  transform: translateY(-300%);
+}
+.skip:focus { transform: none; }
+
+.page {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 max(var(--gutter), env(safe-area-inset-right)) 40px max(var(--gutter), env(safe-area-inset-left));
+}
+
+main { display: grid; gap: clamp(80px, 10vw, 140px); }
+
+.section-head {
+  display: grid;
+  gap: 12px;
+  max-width: 62ch;
+  margin-bottom: 32px;
+}
+.section-head h2, .principles h2, .contact h2 {
+  font-size: var(--size-h2);
+  font-weight: 700;
+  font-variation-settings: "wdth" 88;
+  letter-spacing: -0.01em;
+}
+.section-head p { color: var(--ink-soft); }
+
+/* ===== 3. Materials ===== */
+
+/* Glass: a frosted pane floating above the ground */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    0 34px 60px -24px rgb(var(--shade) / 0.45),
+    inset 0 1px 0 var(--glass-shine);
+}
+
+/* Clay shapes: soft 3D objects that sit behind glass and give it colour */
+.clay-shape {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.5s var(--ease-spatial);
+}
+.clay-orb {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #dbe2ff, var(--clay-periwinkle) 45%, var(--clay-cobalt) 100%);
+  box-shadow:
+    20px 26px 44px rgb(60 80 190 / 0.32),
+    inset -16px -20px 34px rgb(25 35 120 / 0.32),
+    inset 12px 14px 26px rgb(255 255 255 / 0.55);
+}
+.clay-pill {
+  width: 210px;
+  height: 84px;
+  border-radius: var(--r-pill);
+  background: radial-gradient(120% 140% at 30% 20%, #ffe2c2, var(--clay-apricot) 55%, #ef8a3a 100%);
+  box-shadow:
+    18px 22px 38px rgb(200 110 40 / 0.3),
+    inset -12px -14px 26px rgb(160 70 10 / 0.28),
+    inset 10px 10px 20px rgb(255 255 255 / 0.55);
+}
+.clay-dot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #e3fff2, var(--clay-mint) 55%, #3fae7d 100%);
+  box-shadow:
+    10px 14px 24px rgb(40 140 95 / 0.3),
+    inset -8px -10px 16px rgb(10 90 55 / 0.28),
+    inset 6px 6px 12px rgb(255 255 255 / 0.55);
+}
+
+/* ===== 4. Buttons and switches ===== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--r-btn);
+  color: var(--ink);
+  font: 600 1rem/1 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  /* Clay: a puffy white key */
+  background: var(--clay-white);
+  box-shadow:
+    8px 10px 20px rgb(var(--shade) / 0.22),
+    inset -4px -5px 10px rgb(var(--shade) / 0.16),
+    inset 4px 5px 10px rgb(255 255 255 / 0.7);
+  transition: transform 0.2s var(--ease-spatial), box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active, .btn.is-done {
+  transform: translateY(1px) scale(0.98);
+  box-shadow:
+    3px 4px 8px rgb(var(--shade) / 0.2),
+    inset -3px -4px 8px rgb(var(--shade) / 0.14),
+    inset 3px 4px 8px rgb(255 255 255 / 0.6);
+}
+
+/* The one coloured key: cobalt clay */
+.btn-primary {
+  background: var(--clay-cobalt);
+  color: #ffffff;
+  box-shadow:
+    10px 14px 26px rgb(50 70 190 / 0.35),
+    inset -5px -6px 12px rgb(15 25 110 / 0.35),
+    inset 5px 6px 12px rgb(255 255 255 / 0.35);
+}
+.btn-primary:active {
+  box-shadow:
+    4px 6px 12px rgb(50 70 190 / 0.3),
+    inset -4px -5px 10px rgb(15 25 110 / 0.35),
+    inset 4px 5px 10px rgb(255 255 255 / 0.3);
+}
+
+.btn-quiet {
+  background: none;
+  box-shadow: none;
+  color: var(--accent);
+  padding: 0 8px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+.btn-quiet:hover { transform: none; text-decoration-thickness: 2px; }
+.btn-quiet:active { box-shadow: none; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+/* Language: a neumorphic slide switch; the current language is a clay key */
+.seg {
+  display: flex;
+  padding: 5px;
+  gap: 4px;
+  border-radius: var(--r-pill);
+  background: var(--base);
+  box-shadow: var(--press-sm);
+}
+.seg-btn {
+  min-width: 46px;
+  padding: 8px 12px;
+  border-radius: var(--r-pill);
+  color: var(--ink-soft);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--size-small);
+}
+.seg-btn[aria-current="page"] {
+  color: var(--ink);
+  background: var(--clay-white);
+  box-shadow:
+    3px 4px 8px rgb(var(--shade) / 0.25),
+    inset -2px -3px 5px rgb(var(--shade) / 0.15),
+    inset 2px 3px 5px rgb(255 255 255 / 0.7);
+}
+.seg-btn:not([aria-current]):hover { color: var(--ink); }
+
+/* Round push switch, used for dark mode */
+.switch {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--base);
+  color: var(--ink);
+  box-shadow: var(--raise-sm);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+.switch[aria-pressed="true"] { box-shadow: var(--press-sm); color: var(--signal); }
+.icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.icon-moon { fill: currentColor; stroke: none; }
+.icon-sun { display: none; }
+.switch[aria-pressed="true"] .icon-moon { display: none; }
+.switch[aria-pressed="true"] .icon-sun { display: block; }
+
+/* ===== 5. Header ornament ===== */
+
+/* A glass bar that floats above the page while it scrolls */
+.top {
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 14px;
+  padding: 10px 12px 10px 10px;
+  border-radius: var(--r-pill);
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: var(--ink);
+  font: 800 1rem/1 var(--font-display);
+  font-variation-settings: "wdth" 80;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  background: var(--clay-white);
+  box-shadow:
+    4px 6px 12px rgb(var(--shade) / 0.25),
+    inset -3px -4px 8px rgb(var(--shade) / 0.15),
+    inset 3px 4px 8px rgb(255 255 255 / 0.7);
+}
+
+.top-links { display: flex; gap: 22px; margin-right: auto; }
+.top-links a { color: var(--ink-soft); text-decoration: none; font-weight: 600; }
+.top-links a:hover { color: var(--ink); }
+
+.top-controls { display: flex; align-items: center; gap: 12px; }
+
+/* ===== 6. Hero, stage and lead board ===== */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding-top: clamp(40px, 7vw, 96px);
+}
+
+.hero-text { display: grid; gap: 18px; }
+
+.hero h1 {
+  font-size: var(--size-h1);
+  font-weight: 800;
+  font-variation-settings: "wdth" 78, "opsz" 96;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  /* Ink-filled lettering pressed into the plastic: full contrast, soft edge */
+  color: var(--ink);
+  text-shadow: 2px 2px 2px var(--lo), -1px -1px 1px var(--hi);
+}
+
+.hero-line {
+  font-family: var(--font-display);
+  font-size: var(--size-lead);
+  font-weight: 600;
+  line-height: 1.2;
+  max-width: 24ch;
+}
+.hero-intro { color: var(--ink-soft); max-width: 58ch; }
+.hero-text .actions { margin-top: 10px; }
+.hero-facts { font-size: var(--size-small); color: var(--ink-soft); }
+
+/*
+ * Stage: a 3D space. JS writes --px and --py (pointer position, -1 to 1);
+ * the glass window tilts toward the pointer while clay shapes behind and in
+ * front of it drift in opposite directions, which reads as depth.
+ */
+.stage {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  perspective: 1100px;
+  isolation: isolate;
+}
+
+.stage .clay-orb { top: -38px; right: -26px; z-index: -1; transform: translate3d(calc(var(--px) * -16px), calc(var(--py) * -12px), 0); }
+.stage .clay-pill { bottom: 36px; left: -64px; z-index: -1; transform: rotate(-18deg) translate3d(calc(var(--px) * -10px), calc(var(--py) * -8px), 0); }
+.stage .clay-dot { bottom: -22px; right: 18%; z-index: 2; transform: translate3d(calc(var(--px) * 22px), calc(var(--py) * 16px), 0); }
+
+.board {
+  margin: 0;
+  padding: clamp(24px, 3.5vw, 40px);
+  border-radius: var(--r-window);
+  display: grid;
+  gap: 22px;
+  transform: rotateX(calc(var(--py) * -5deg)) rotateY(calc(var(--px) * 7deg));
+  transition: transform 0.5s var(--ease-spatial);
+}
+.board figcaption { font-size: var(--size-small); color: var(--ink-soft); }
+
+.board-track { position: relative; }
+
+.nodes { position: relative; display: grid; gap: 10px; }
+
+.node {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 76px;
+}
+
+/* Knobs: white clay buttons with a status lamp */
+.knob {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--clay-white);
+  box-shadow:
+    6px 9px 16px rgb(var(--shade) / 0.25),
+    inset -5px -6px 10px rgb(var(--shade) / 0.16),
+    inset 5px 6px 10px rgb(255 255 255 / 0.75);
+  z-index: 1;
+}
+
+.led {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--off);
+  box-shadow: inset 1px 1px 2px rgb(0 0 0 / 0.25);
+}
+.node .led { animation: led-on 0.4s ease forwards; animation-delay: calc(0.5s + var(--i) * 0.62s); }
+
+@keyframes led-on {
+  to { background: var(--signal); box-shadow: 0 0 10px var(--signal), inset 1px 1px 2px rgb(255 255 255 / 0.4); }
+}
+
+.node-text { display: grid; gap: 2px; }
+.node-text strong { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+.node-text span { color: var(--ink-soft); font-size: var(--size-small); line-height: 1.4; }
+
+/* Neumorphic groove behind the knobs (their centres sit 29px from the left) */
+.groove {
+  position: absolute;
+  left: 22px;
+  width: 14px;
+  top: 38px;
+  bottom: 38px;
+  border-radius: var(--r-pill);
+  background: rgb(var(--shade) / 0.08);
+  box-shadow: inset 3px 3px 6px rgb(var(--shade) / 0.25), inset -2px -2px 5px rgb(255 255 255 / 0.5);
+}
+
+/* The lead: a tiny apricot clay ball that rolls once from page to sales */
+.lead {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff1dc, var(--signal) 60%, #c87405);
+  box-shadow: 0 0 12px var(--signal);
+  animation: roll 2.3s cubic-bezier(0.55, 0.05, 0.3, 1) 0.5s forwards;
+}
+
+@keyframes roll {
+  from { top: 0; }
+  to { top: calc(100% - 12px); }
+}
+
+/* ===== 7. Work: filters and case keys ===== */
+
+.filters { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Neumorphic toggles: raised when off, pressed in with a cobalt label when on */
+.chip-switch {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--base);
+  color: var(--ink-soft);
+  font: 600 0.95rem/1 var(--font-body);
+  box-shadow: var(--raise-sm);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, color 0.15s ease;
+}
+.chip-switch:hover { color: var(--ink); }
+.chip-switch[aria-pressed="true"] { box-shadow: var(--press-sm); color: var(--accent); }
+
+.showing { margin: 18px 0 26px; font-size: var(--size-small); color: var(--ink-soft); min-height: 1.4em; }
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 28px;
+  perspective: 1400px;
+}
+
+/* A case is a neumorphic key: it lifts toward you on hover, presses in when open */
+.case {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 26px 28px 28px;
+  border-radius: var(--r-key);
+  background: var(--base);
+  box-shadow: var(--raise);
+  transition: box-shadow 0.3s ease, transform 0.35s var(--ease-spatial);
+}
+.case:hover:not(.is-open), .case:focus-within:not(.is-open) {
+  transform: translateY(-4px);
+  box-shadow: var(--lift);
+}
+.case-wide, .case.is-open { grid-column: 1 / -1; }
+.case.is-open { box-shadow: var(--press); }
+.case[hidden] { display: none; }
+
+.case-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: var(--size-small); color: var(--ink-soft); }
+
+.status { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); }
+.status .led { width: 9px; height: 9px; }
+.status[data-status="live"] .led { background: var(--live); box-shadow: 0 0 8px var(--live); }
+.status[data-status="progress"] .led { background: var(--progress); box-shadow: 0 0 8px var(--progress); }
+
+.case-title { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); font-weight: 700; font-variation-settings: "wdth" 92; }
+
+.case-toggle {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.case-toggle:focus-visible { outline-offset: 6px; border-radius: 6px; }
+
+/* The round clay key on each case, tinted by area of work */
+.case-knob {
+  --tint: var(--clay-white);
+  position: relative;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--tint);
+  box-shadow:
+    5px 7px 14px rgb(var(--shade) / 0.25),
+    inset -4px -5px 9px rgb(var(--shade) / 0.18),
+    inset 4px 5px 9px rgb(255 255 255 / 0.6);
+  transition: transform 0.3s var(--ease-spatial), box-shadow 0.2s ease;
+}
+.case[data-tag="automation"] .case-knob { --tint: var(--clay-periwinkle); }
+.case[data-tag="web"] .case-knob { --tint: var(--clay-mint); }
+.case[data-tag="data"] .case-knob { --tint: var(--clay-apricot); }
+.case[data-tag="email"] .case-knob { --tint: #f3a9c4; }
+.case[data-tag="ai"] .case-knob { --tint: #c3a8f5; }
+
+.case-knob::before, .case-knob::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2.5px;
+  margin: -1.25px 0 0 -7px;
+  border-radius: 2px;
+  background: #1b2520;
+}
+.case-knob::after { transform: rotate(90deg); transition: transform 0.25s ease; }
+.case-toggle[aria-expanded="true"] .case-knob { transform: scale(0.94); box-shadow: inset -3px -4px 8px rgb(var(--shade) / 0.25), inset 3px 4px 8px rgb(255 255 255 / 0.45); }
+.case-toggle[aria-expanded="true"] .case-knob::after { transform: rotate(0deg); }
+
+.case-summary { color: var(--ink-soft); max-width: 70ch; }
+
+.case-body { display: grid; gap: 24px; padding-top: 10px; }
+.case-body[hidden] { display: none; }
+
+/* Problem, what I did, result: a real sequence, read left to right */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+.steps li { display: grid; gap: 8px; align-content: start; }
+.steps h4 { font-size: 1.02rem; font-weight: 700; }
+.steps p { max-width: 46ch; }
+
+.tools { display: flex; flex-wrap: wrap; gap: 10px; }
+.tools li {
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: var(--size-small);
+  color: var(--ink-soft);
+  box-shadow: var(--press-sm);
+}
+
+/* ===== 8. Toolbox, principles, contact ===== */
+
+/* A recessed neumorphic tray holding small clay parts */
+.tray {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: 32px 30px;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: var(--r-window);
+  background: var(--well);
+  box-shadow: var(--press);
+}
+.tool-group { display: grid; gap: 14px; align-content: start; }
+.tool-group h3 { font-size: 1.05rem; font-weight: 700; }
+.tool-group ul { display: flex; flex-wrap: wrap; gap: 10px; }
+.tool-group li {
+  padding: 7px 14px;
+  border-radius: 14px;
+  font-size: var(--size-small);
+  background: var(--clay-white);
+  box-shadow:
+    4px 6px 10px rgb(var(--shade) / 0.18),
+    inset -2px -3px 6px rgb(var(--shade) / 0.12),
+    inset 2px 3px 6px rgb(255 255 255 / 0.7);
+}
+
+.principles { display: grid; gap: 32px; }
+.principles ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 56px;
+  max-width: 980px;
+}
+.principles h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+.principles p { color: var(--ink-soft); max-width: 48ch; }
+
+.stage-contact { padding: 40px 0; }
+.stage-contact .clay-orb { top: 0; right: 4%; width: 220px; height: 220px; }
+.stage-contact .clay-pill { bottom: 4px; left: 6%; }
+
+.contact {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  padding: clamp(28px, 5vw, 64px);
+  border-radius: var(--r-window);
+  transform: rotateX(calc(var(--py) * -3deg)) rotateY(calc(var(--px) * 4deg));
+  transition: transform 0.5s var(--ease-spatial);
+}
+.contact h2 { max-width: 20ch; }
+.contact p { color: var(--ink-soft); max-width: 56ch; }
+.contact .actions { margin-top: 8px; }
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 64px;
+  font-size: var(--size-small);
+  color: var(--ink-soft);
+}
+
+/* Browsers without backdrop-filter: a solid surface keeps text readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--base); }
+}
+
+/* ===== 9. Small screens, reduced motion ===== */
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .stage .clay-pill { left: -30px; }
+}
+
+@media (max-width: 720px) {
+  .top { flex-wrap: wrap; gap: 10px 14px; border-radius: 28px; top: 8px; }
+  .top-links { order: 3; width: 100%; justify-content: space-around; gap: 12px; padding-bottom: 4px; }
+  .top-controls { margin-left: auto; }
+  .cases { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .case { padding: 22px 20px 24px; }
+  .principles ul { grid-template-columns: minmax(0, 1fr); }
+  .actions .btn { flex: 1 1 auto; }
+  .actions .btn-quiet { flex: 0 0 auto; }
+  .clay-orb { width: 120px; height: 120px; }
+  .stage .clay-orb { right: -20px; }
+  .clay-pill { width: 150px; height: 62px; }
+  .stage-contact .clay-orb { width: 140px; height: 140px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+  .board, .contact { transform: none; }
+  .case:hover:not(.is-open), .case:focus-within:not(.is-open) { transform: none; }
+  .lead { animation: none; top: calc(100% - 12px); }
+  .node .led { animation: none; background: var(--signal); box-shadow: 0 0 10px var(--signal); }
+}
