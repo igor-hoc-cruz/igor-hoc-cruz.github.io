@@ -445,8 +445,10 @@ main { display: grid; gap: clamp(96px, 11vw, 168px); }
 .hero h1 {
   font-size: var(--size-h1);
   font-weight: 800;
-  font-variation-settings: "wdth" 76, "opsz" 96;
-  letter-spacing: -0.04em;
+  font-variation-settings: "wdth" 80, "opsz" 96;
+  /* A little air between letters so the condensed gold glyphs never touch */
+  letter-spacing: 0.02em;
+  word-spacing: 0.06em;
   line-height: 0.88;
   padding-bottom: 0.06em;
 }
