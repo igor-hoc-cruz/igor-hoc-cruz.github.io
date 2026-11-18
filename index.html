@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Igor Cruz · Portfolio</title>
+<meta name="description" content="Portfolio of Igor Henrique de Oliveira Cruz: CRM, automation, websites and applied AI for marketing.">
+<link rel="canonical" href="https://igor-hoc-cruz.github.io/">
+<link rel="alternate" hreflang="en" href="https://igor-hoc-cruz.github.io/">
+<link rel="alternate" hreflang="pt-BR" href="https://igor-hoc-cruz.github.io/pt/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Igor Cruz · Portfolio">
+<meta property="og:description" content="Portfolio of Igor Henrique de Oliveira Cruz: CRM, automation, websites and applied AI for marketing.">
+<meta property="og:url" content="https://igor-hoc-cruz.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  /*
+    Portfólio — Igor Henrique de Oliveira Cruz.
+    Conceito: cada caso é lido como um fluxo de automação (problema → o que fiz → resultado),
+    numa página editorial sóbria, com tipografia de interface e texto em serifa para leitura.
+  */
+  :root {
+    --paper: #f3f5f3;
+    --surface: #ffffff;
+    --ink: #142320;
+    --ink-soft: #4b5b57;
+    --rule: #d5ddd9;
+    --accent: #1d6b58;
+    --accent-soft: #e2efea;
+    --progress: #9a5b0c;
+    --progress-soft: #f6ead8;
+
+    --font-display: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+
+    --step--1: 0.84rem;
+    --step-0: 1.05rem;
+    --step-1: 1.25rem;
+    --step-2: 1.6rem;
+    --step-3: clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0f1716;
+      --surface: #16201e;
+      --ink: #e4ece9;
+      --ink-soft: #a3b3ae;
+      --rule: #2a3734;
+      --accent: #5cc3a5;
+      --accent-soft: #1b3330;
+      --progress: #e3a75a;
+      --progress-soft: #33281a;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0f1716;
+    --surface: #16201e;
+    --ink: #e4ece9;
+    --ink-soft: #a3b3ae;
+    --rule: #2a3734;
+    --accent: #5cc3a5;
+    --accent-soft: #1b3330;
+    --progress: #e3a75a;
+    --progress-soft: #33281a;
+    color-scheme: dark;
+  }
+
+  /* ===== Base ===== */
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 48px 64px;
+    display: grid;
+    gap: 56px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--accent);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ===== Cabeçalho ===== */
+
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 40px;
+  }
+
+  .intro h1 {
+    font-size: var(--step-3);
+    font-weight: 800;
+    margin-top: 10px;
+  }
+
+  .intro .role {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--step-1);
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .intro .thesis {
+    margin-top: 20px;
+    max-width: 62ch;
+    color: var(--ink-soft);
+  }
+
+  .contact {
+    display: grid;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 8px;
+  }
+
+  .contact-row span:first-child {
+    color: var(--ink-soft);
+  }
+
+  .contact-row span:last-child {
+    user-select: all;
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* ===== Faixa de escala ===== */
+
+  .scale {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .scale div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .scale strong {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scale span {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: 1.4;
+  }
+
+  /* ===== Casos ===== */
+
+  .cases {
+    display: grid;
+    gap: 20px;
+  }
+
+  .section-head {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .section-head h2 {
+    font-size: var(--step-2);
+    font-weight: 700;
+  }
+
+  .case {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px;
+    display: grid;
+    gap: 20px;
+  }
+
+  .case-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 16px;
+  }
+
+  .case-head h3 {
+    font-size: var(--step-1);
+    font-weight: 700;
+    min-width: 0;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .status.in-progress {
+    background: var(--progress-soft);
+    color: var(--progress);
+  }
+
+  /* O trilho imita a ligação entre nós de um fluxo: três etapas lidas da esquerda para a direita. */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 2px solid var(--accent);
+  }
+
+  .flow > div {
+    position: relative;
+    padding: 18px 20px 0 0;
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .flow > div::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+  }
+
+  .flow .eyebrow {
+    padding-left: 0;
+  }
+
+  .flow p {
+    font-size: 1rem;
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tools li {
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+
+  .tools {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ===== Como trabalho ===== */
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 40px;
+  }
+
+  .principles h3 {
+    font-size: var(--step-0);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .principles p {
+    color: var(--ink-soft);
+  }
+
+  /* ===== Rodapé ===== */
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+  }
+
+  /* ===== Telas estreitas ===== */
+
+  @media (max-width: 760px) {
+    .page {
+      padding-block: 32px 48px;
+      gap: 40px;
+    }
+
+    .intro {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .scale {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case {
+      padding: 20px;
+    }
+
+    /* No celular o trilho fica vertical, com a linha à esquerda. */
+    .flow {
+      grid-template-columns: minmax(0, 1fr);
+      border-top: 0;
+      border-left: 2px solid var(--accent);
+      gap: 18px;
+      margin-left: 6px;
+    }
+
+    .flow > div {
+      padding: 0 0 0 20px;
+    }
+
+    .flow > div::before {
+      top: 4px;
+      left: -7px;
+    }
+
+    .principles {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .status.personal {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+  }
+
+  .contact-row a {
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- ===== Introduction ===== -->
+  <header class="intro">
+    <div>
+      <p class="eyebrow">Portfolio · 2026</p>
+      <h1>Igor Henrique de Oliveira Cruz</h1>
+      <p class="role">Digital marketing, CRM, automation and applied AI</p>
+      <p class="thesis">
+        I connect the landing page to the sales team: I build the sites and forms,
+        route every lead into the CRM the right way, look after email delivery and
+        measure what works. Below are real cases from my current role at a US
+        insurance agency serving Brazilian and Hispanic families, with no client data.
+      </p>
+    </div>
+
+    <div class="contact" aria-label="Contact">
+      <div class="contact-row"><span>Based in</span><span>Jundiaí, SP, Brazil</span></div>
+      <div class="contact-row"><span>Email</span><span>Igorhoc0@gmail.com</span></div>
+      <div class="contact-row"><span>GitHub</span><span><a href="https://github.com/igor-hoc-cruz">igor-hoc-cruz</a></span></div>
+      <div class="contact-row"><span>Português</span><span><a href="pt/" hreflang="pt-BR" lang="pt-BR">Ver em português</a></span></div>
+      <div class="contact-row"><span>Languages</span><span>EN fluent · PT native · ES</span></div>
+    </div>
+  </header>
+
+  <!-- ===== Scale of the work ===== -->
+  <section class="scale" aria-label="Scale of the work">
+    <div><strong>3 languages</strong><span>company site and product pages in Portuguese, Spanish and English</span></div>
+    <div><strong>60+ pages</strong><span>migrated and published on WordPress and Elementor</span></div>
+    <div><strong>130k</strong><span>emails a week in the enrollment-season funnel</span></div>
+    <div><strong>13 areas</strong><span>served by an internal system of AI agents</span></div>
+  </section>
+
+  <!-- ===== Cases ===== -->
+  <section class="cases" aria-labelledby="cases-title">
+    <div class="section-head">
+      <p class="eyebrow">Cases</p>
+      <h2 id="cases-title">Problem, what I did and the result</h2>
+    </div>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Email deliverability at scale</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>High email volume with a high bounce rate, and a domain with a duplicate DMARC record that cancelled out its protection policy.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Backed up the DNS, merged the DMARC records, set up a custom return path and suppressed thousands of invalid addresses and problem domains from the lists.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>Sender authenticated on SPF, DKIM, DMARC and return path, with domain warm-up held at its limit of 14,000 sends a day.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>GoHighLevel</li><li>Zoho Marketing Automation</li><li>Cloudflare DNS</li><li>DMARC · SPF · DKIM</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Ad leads that vanished before becoming deals</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>Half the leads from one Meta campaign never became deals: the CRM silently rejected anyone whose phone number was already on file.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Traced the runs in n8n and rebuilt the route with duplicate handling, re-entry by the new product, alerts and the company's official lead-entry field standard.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>The lost leads were recovered as deals, every failure now raises an alert, and all sources send channel, UTMs and ad IDs.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>n8n</li><li>Zapier</li><li>Zoho CRM API</li><li>Meta Lead Ads</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Lead source and cost per channel</h3>
+        <span class="status in-progress">In progress</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>Almost no lead reached the CRM with a recorded source, so there was no cost per lead or per customer for any channel.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Found the cause: the quote form runs inside an iframe that never receives the page's UTMs. Designed a separate, read-only flow that classifies each lead's channel.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>Classification logic built and tested, writing to Zoho Analytics, without changing any flow already running in production.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>n8n API</li><li>JavaScript</li><li>Zoho Analytics</li><li>Automated tests</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Trilingual site and lead-capture pages</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>A company site on an old platform, without full Spanish and English versions, slow on phones and without reliable conversion events.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Migrated 60+ pages to WordPress and Elementor, optimized images and video, set up SEO and social cards, and built e-book and guide pages with forms.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>A site in three languages with URLs preserved, and every material download tracked as a Meta conversion event through Google Tag Manager.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>WordPress</li><li>Elementor</li><li>HTML · CSS · JS</li><li>Google Tag Manager</li><li>Meta Pixel</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>TikTok Ads data in the company dashboard</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>Ads rejected with no clear reason, and campaign numbers stuck in TikTok's own interface, outside the company's reports.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Identified the restricted-category rule behind the rejections, filed the eligibility review and got a Marketing API app approved with read-only scopes.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>A daily feed of 81 columns of campaign, ad group and ad data into Zoho Analytics, plus a creative analysis showing which messages pass the policy.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>TikTok Marketing API</li><li>OAuth</li><li>n8n</li><li>Zoho Analytics</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>HR portal with contracts and e-signature</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>Contractor agreements and onboarding handled by hand, in loose documents with no history.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Built custom WordPress plugins for HR: access, requests, audit trail, and sending filled-in contracts for signature through Zoho Sign, tested locally before each release.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>A portal running inside the company site with no extra server, and a reusable history for every contract.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>PHP</li><li>WordPress REST</li><li>Zoho Sign API</li><li>JavaScript</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>A lightweight CRM for a sales team</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>A small, non-technical team tracked its pipeline in spreadsheets and uploaded contact lists to the marketing platform by hand.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Built a Google Apps Script web app with pipeline, meetings, commissions and a screen that sends spreadsheets to GoHighLevel in batches within the API limit.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>A published system where each person keeps their own spreadsheet, covered by 80+ automated tests on rules, metrics and uploads.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>Google Apps Script</li><li>GoHighLevel API</li><li>JavaScript</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Running marketing operations with AI agents</h3>
+        <span class="status">Live</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>Too many marketing requests for a lean team, and the risk of AI publishing, spending or changing data without control.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Built an internal system that routes requests across 13 areas, requires human approval before any outside action and draws on knowledge bases for the brand and Zoho.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>A 60% to 87% cut in tokens per request, compliance rules applied by default and verifiable completion criteria on every task.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>Claude and Claude Code</li><li>MCP connectors</li><li>Scheduled tasks</li><li>Knowledge bases</li>
+      </ul>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>A 3D desktop character that runs fully offline</h3>
+        <span class="status personal">Personal project</span>
+      </div>
+      <div class="flow">
+        <div>
+          <p class="eyebrow">Problem</p>
+          <p>I wanted to learn real-time 3D and speech end to end: an animated character on the desktop that reacts and talks, with no paid APIs or cloud services.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What I did</p>
+          <p>Built an Electron app that renders a VRM character with three.js, with about 300 scripted actions and 98 motion clips, plus a close-up face view that syncs lips, blinks and gaze to the voice. A Python pipeline drives Blender to render animation sets.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Result</p>
+          <p>Everything runs on a laptop: speech is generated locally with an open-source text-to-speech model, and the face animates in sync with it in real time.</p>
+        </div>
+      </div>
+      <ul class="tools">
+        <li>Electron</li><li>three.js · three-vrm</li><li>Blender Python API</li><li>Kokoro TTS</li><li>Node.js</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ===== How I work ===== -->
+  <section aria-labelledby="how-title">
+    <div class="section-head">
+      <p class="eyebrow">How I work</p>
+      <h2 id="how-title">Principles behind every case</h2>
+    </div>
+    <div class="principles">
+      <div>
+        <h3>Understand the need before picking the tool</h3>
+        <p>I start from what people need and which data is missing. The tool comes after.</p>
+      </div>
+      <div>
+        <h3>Don't break what already works</h3>
+        <p>Big changes go in alongside production, with a backup and a way back.</p>
+      </div>
+      <div>
+        <h3>Done means verified</h3>
+        <p>Every delivery has concrete completion checks and only counts as done once it's tested.</p>
+      </div>
+      <div>
+        <h3>Client data stays protected</h3>
+        <p>No personal data in code or reports, least access in integrations and approval before acting.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Igor Henrique de Oliveira Cruz · Jundiaí, SP, Brazil</span>
+    <span>Cases shared without client data. Technical details on request.</span>
+  </footer>
+
+</main>
+</body>
+</html>
