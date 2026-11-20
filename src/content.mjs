@@ -1,4 +1,4 @@
-﻿/**
+/**
  * content.mjs
  * ---------------------------------------------------------------------------
  * Every word on the site, in English and Portuguese, in one place.
@@ -15,6 +15,29 @@
 export const SITE_URL = 'https://igor-hoc-cruz.github.io';
 export const EMAIL = 'Igorhoc0@gmail.com';
 export const GITHUB = 'https://github.com/igor-hoc-cruz';
+export const LINKEDIN = 'https://www.linkedin.com/in/igor-henrique-de-oliveira-cruz-71066921b';
+
+/* ===== Flow diagrams for the featured cases =============================
+ * Each flow is a list of stages read left to right; a stage with two nodes
+ * is a branch. `gate` is the stage drawn in ruby (the decision point).
+ * ======================================================================== */
+const FLOWS = {
+  'ai-agents': {
+    gate: 3,
+    en: [['A marketing request'], ['Routed to 1 of 13 areas'], ['A specialist agent does the work'], ['Human approval'], ['Publish, send or spend']],
+    pt: [['Um pedido de marketing'], ['Roteado para 1 de 13 áreas'], ['Um agente especialista faz o trabalho'], ['Aprovação humana'], ['Publicar, enviar ou gastar']],
+  },
+  'lost-leads': {
+    gate: 2,
+    en: [['Meta lead form'], ['n8n route'], ['Phone already in the CRM?'], ['New: create the lead', 'Known: re-entry on the new product'], ['Any failure raises an alert']],
+    pt: [['Formulário da Meta'], ['Rota no n8n'], ['Telefone já está no CRM?'], ['Novo: cria o lead', 'Conhecido: reentrada no produto novo'], ['Toda falha gera alerta']],
+  },
+  'kpi-dashboards': {
+    gate: 2,
+    en: [['Meta', 'TikTok', 'CRM'], ['Existing flows, read-only'], ['Zoho Analytics'], ['Dashboard: 8 cards, 9 charts', 'Office TV: 4 screens, 30 s each']],
+    pt: [['Meta', 'TikTok', 'CRM'], ['Fluxos existentes, só leitura'], ['Zoho Analytics'], ['Painel: 8 cards, 9 gráficos', 'TV: 4 telas, 30 s cada']],
+  },
+};
 
 /* ===== Case studies =====================================================
  * tag      : filter group (see `filters` in each language)
@@ -64,7 +87,7 @@ const CASES = [
       title: 'Ad leads that vanished before becoming deals',
       summary: 'Half of one campaign’s leads were being dropped without a trace. I found the silent rejection and rebuilt the route around it.',
       role: 'Diagnosed the failure and rebuilt the integration.',
-      problem: 'The CRM quietly refused any lead whose phone number was already on file, so half the leads from one Meta campaign never turned into deals, and no one was told.',
+      problem: 'The CRM refused, with no warning, any lead whose phone number was already on file, so half the leads from one Meta campaign never turned into deals, and no one was told.',
       did: [
         'Traced the failed runs in n8n until the rejection rule showed up.',
         'Rebuilt the route with duplicate handling and re-entry when the person asks about a new product.',
@@ -174,7 +197,7 @@ const CASES = [
     id: 'lead-source', tag: 'data', status: 'progress',
     tools: ['n8n API', 'JavaScript', 'Zoho Analytics', 'Automated tests'],
     en: {
-      title: 'Where do our leads actually come from?',
+      title: 'Where do our leads come from?',
       summary: 'Almost no lead had a recorded source. The cause was an iframe; the fix is a read-only classifier.',
       problem: 'Leads reached the CRM without a source, so nobody could say what a lead or a customer cost per channel.',
       did: [
@@ -185,7 +208,7 @@ const CASES = [
       result: 'Classification logic built and tested, writing to Zoho Analytics, without touching any flow already in production.',
     },
     pt: {
-      title: 'De onde vêm, de verdade, os nossos leads?',
+      title: 'De onde vêm os nossos leads?',
       summary: 'Quase nenhum lead tinha origem registrada. A causa era um iframe; a solução é um classificador que só lê.',
       problem: 'Os leads chegavam ao CRM sem origem, e ninguém sabia quanto custava um lead ou um cliente em cada canal.',
       did: [
@@ -255,7 +278,7 @@ const CASES = [
     tools: ['CMS public use files', 'JavaScript', 'Data modelling'],
     en: {
       title: 'A health plan calculator with real prices',
-      summary: 'Instead of estimates, it shows real premiums from public federal data, with eligibility checks and a carrier filter.',
+      summary: 'It shows real premiums from public federal data, with eligibility checks and a carrier filter.',
       problem: 'Visitors wanted to know what a plan would really cost before talking to anyone, and generic estimates were not good enough.',
       did: [
         'Modelled the federal public use files for 2026 and 2027 plan years.',
@@ -266,7 +289,7 @@ const CASES = [
     },
     pt: {
       title: 'Uma calculadora de planos de saúde com preço real',
-      summary: 'Em vez de estimativa, mostra prêmios reais a partir de dados públicos federais, com elegibilidade e filtro de operadora.',
+      summary: 'Mostra prêmios reais a partir de dados públicos federais, com elegibilidade e filtro de operadora.',
       problem: 'Os visitantes queriam saber quanto um plano custaria de verdade antes de falar com alguém, e estimativas genéricas não bastavam.',
       did: [
         'Modelei os arquivos públicos federais dos anos de plano 2026 e 2027.',
@@ -360,7 +383,7 @@ const CASES = [
     metric: { value: '80+', en: 'automated tests', pt: 'testes automatizados' },
     tools: ['Google Apps Script', 'GoHighLevel API', 'JavaScript'],
     en: {
-      title: 'A CRM a non-technical team actually uses',
+      title: 'A spreadsheet CRM for a small sales team',
       summary: 'A Google Apps Script web app for pipeline, meetings and commissions, covered by 80+ automated tests.',
       problem: 'A small sales team ran its pipeline in spreadsheets and uploaded contact lists to the marketing platform by hand.',
       did: [
@@ -371,7 +394,7 @@ const CASES = [
       result: 'Each person keeps their own spreadsheet, and uploads to GoHighLevel happen from one screen.',
     },
     pt: {
-      title: 'Um CRM que uma equipe não técnica de fato usa',
+      title: 'Um CRM em planilha para uma equipe comercial pequena',
       summary: 'Um web app em Google Apps Script com funil, reuniões e comissões, coberto por mais de 80 testes automatizados.',
       problem: 'Uma equipe comercial pequena controlava o funil em planilhas e subia listas de contatos na mão para a plataforma de marketing.',
       did: [
@@ -414,7 +437,7 @@ const CASES = [
     tools: ['HTML and CSS', 'WordPress plugins', 'PHP', 'Hostinger'],
     en: {
       title: 'Websites for companies outside insurance',
-      summary: 'An investment firm and a technology company, each with a site built around what they actually need.',
+      summary: 'An investment firm and a technology company, each with a site built for its own business.',
       problem: 'Each needed a site that explained the business clearly in its own markets, and one needed a safe way to receive and review contact requests.',
       did: [
         'Built a 32-page site in Portuguese and English for the investment firm.',
@@ -425,7 +448,7 @@ const CASES = [
     },
     pt: {
       title: 'Sites para empresas fora do mercado de seguros',
-      summary: 'Uma empresa de investimentos e uma de tecnologia, cada uma com um site feito em volta do que ela precisa de verdade.',
+      summary: 'Uma empresa de investimentos e uma de tecnologia, cada uma com um site feito para o seu negócio.',
       problem: 'Cada uma precisava de um site que explicasse o negócio com clareza nos seus mercados, e uma delas precisava de um jeito seguro de receber e revisar pedidos de contato.',
       did: [
         'Construí um site de 32 páginas em português e inglês para a empresa de investimentos.',
@@ -446,7 +469,7 @@ const CASES = [
       did: [
         'Wrote a 61-page manual in the brand’s colours covering every module, with a catalog of triggers and actions.',
         'Packaged brand, tone and compliance rules as knowledge bases other assistants can load.',
-        'Generated the PDF from source, so updates are a rebuild, not a redesign.',
+        'Generated the PDF from source, so an update is one rebuild.',
       ],
       result: 'One reference for people and one for machines, both kept in sync with how the work is really done.',
     },
@@ -457,7 +480,7 @@ const CASES = [
       did: [
         'Escrevi um manual de 61 páginas nas cores da marca, cobrindo todos os módulos, com catálogo de gatilhos e ações.',
         'Empacotei regras de marca, tom e compliance como bases de conhecimento que outros assistentes carregam.',
-        'Gerei o PDF a partir do código-fonte, para atualizar ser só reconstruir, sem redesenhar.',
+        'Gerei o PDF a partir do código-fonte, e cada atualização é só gerar de novo.',
       ],
       result: 'Uma referência para pessoas e outra para máquinas, as duas alinhadas com o jeito real de trabalhar.',
     },
@@ -506,13 +529,19 @@ export const LANGS = {
       name: 'Igor Cruz',
       line: 'I connect the landing page to the sales team.',
       intro: [
-        'I work where marketing meets the plumbing behind it. I build the pages and the forms, make sure every lead reaches the CRM with its source intact, keep the emails out of spam and measure what is really working.',
+        'I build the pages and the forms, make sure every lead reaches the CRM with its source intact, keep the emails out of spam and measure what is really working.',
         'Right now I do this for a US insurance agency that serves Brazilian and Hispanic families. The cases below are real and contain no client data.',
       ],
       ctaEmail: 'Email me',
       ctaCopy: 'Copy address',
       ctaCopied: 'Copied',
       ctaWork: 'See the work',
+      ctaCv: 'Download CV',
+      cvFile: 'assets/cv/Igor_Cruz_CV_EN.pdf',
+      linkedin: 'LinkedIn profile',
+      pause: 'Pause animation',
+      play: 'Play animation',
+      flowLabel: 'How it works',
       facts: [
         ['Based in', 'Jundiaí, Brazil'],
         ['Languages', 'English, Portuguese, Spanish'],
@@ -534,7 +563,7 @@ export const LANGS = {
     gauges: {
       title: 'The work in numbers',
       items: [
-        ['17', 'case studies on this page'],
+        ['14,000', 'emails a day from one warmed-up domain'],
         ['60+', 'pages migrated to WordPress'],
         ['130k', 'follow-up emails a week'],
         ['12,034', 'leads brought into the CRM'],
@@ -582,7 +611,7 @@ export const LANGS = {
     },
     toolbox: {
       title: 'Toolbox',
-      lede: 'What I reach for most days. I pick the tool after I understand the problem, not before.',
+      lede: 'What I reach for most days. I pick the tool once I understand the problem.',
       groups: [
         ['Automation and CRM', ['n8n', 'Zapier', 'Zoho CRM', 'Zoho Sign', 'GoHighLevel', 'Google Apps Script']],
         ['Websites', ['WordPress', 'Elementor', 'HTML and CSS', 'JavaScript', 'PHP']],
@@ -605,7 +634,7 @@ export const LANGS = {
       text: 'Tell me what is breaking or what you need built, and I will tell you how I would approach it.',
       github: 'GitHub profile',
     },
-    footer: 'Cases shared without client data. Last updated November 2026.',
+    footer: 'Cases shared without client data. Product names and logos are trademarks of their owners. Last updated November 2026.',
   },
 
   pt: {
@@ -622,13 +651,19 @@ export const LANGS = {
       name: 'Igor Cruz',
       line: 'Eu conecto a página de captação ao time de vendas.',
       intro: [
-        'Trabalho onde o marketing encontra o encanamento por trás dele. Construo as páginas e os formulários, garanto que cada lead chegue ao CRM com a origem certa, mantenho os e-mails longe do spam e meço o que de fato funciona.',
+        'Construo as páginas e os formulários, garanto que cada lead chegue ao CRM com a origem certa, mantenho os e-mails longe do spam e meço o que de fato funciona.',
         'Hoje faço isso numa corretora de seguros nos EUA que atende famílias brasileiras e hispânicas. Os casos abaixo são reais e não têm dados de clientes.',
       ],
       ctaEmail: 'Mandar e-mail',
       ctaCopy: 'Copiar endereço',
       ctaCopied: 'Copiado',
       ctaWork: 'Ver os trabalhos',
+      ctaCv: 'Baixar currículo',
+      cvFile: 'assets/cv/Igor_Cruz_Curriculo_PT.pdf',
+      linkedin: 'Perfil no LinkedIn',
+      pause: 'Pausar animação',
+      play: 'Retomar animação',
+      flowLabel: 'Como funciona',
       facts: [
         ['Moro em', 'Jundiaí, SP'],
         ['Idiomas', 'Inglês, português, espanhol'],
@@ -650,7 +685,7 @@ export const LANGS = {
     gauges: {
       title: 'O trabalho em números',
       items: [
-        ['17', 'casos nesta página'],
+        ['14 mil', 'e-mails por dia num domínio aquecido'],
         ['60+', 'páginas migradas para o WordPress'],
         ['130 mil', 'e-mails de acompanhamento por semana'],
         ['12.034', 'leads trazidos para o CRM'],
@@ -698,7 +733,7 @@ export const LANGS = {
     },
     toolbox: {
       title: 'Ferramentas',
-      lede: 'O que eu uso quase todo dia. Escolho a ferramenta depois de entender o problema, não antes.',
+      lede: 'O que eu uso quase todo dia. Escolho a ferramenta depois de entender o problema.',
       groups: [
         ['Automação e CRM', ['n8n', 'Zapier', 'Zoho CRM', 'Zoho Sign', 'GoHighLevel', 'Google Apps Script']],
         ['Sites', ['WordPress', 'Elementor', 'HTML e CSS', 'JavaScript', 'PHP']],
@@ -721,7 +756,7 @@ export const LANGS = {
       text: 'Me conte o que está quebrando ou o que precisa ser construído, e eu conto como atacaria o problema.',
       github: 'Perfil no GitHub',
     },
-    footer: 'Casos compartilhados sem dados de clientes. Atualizado em novembro de 2026.',
+    footer: 'Casos compartilhados sem dados de clientes. Nomes e logos de produtos são marcas dos seus donos. Atualizado em novembro de 2026.',
   },
 };
 
@@ -731,5 +766,6 @@ export function casesFor(lang) {
     ...meta,
     ...(lang === 'pt' ? pt : en),
     metric: metric ? { value: metric.value, label: metric[lang] } : null,
+    flow: FLOWS[meta.id] ? { gate: FLOWS[meta.id].gate, stages: FLOWS[meta.id][lang] } : null,
   }));
 }

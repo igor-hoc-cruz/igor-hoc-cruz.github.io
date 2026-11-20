@@ -167,6 +167,27 @@
     }
   }
 
+  /* Pause / play every looping animation (WCAG 2.2.2), remembered locally */
+  const motionToggle = document.querySelector('.motion-toggle');
+  const setPaused = (paused) => {
+    root.classList.toggle('motion-paused', paused);
+    if (svg) { if (paused) svg.pauseAnimations(); else svg.unpauseAnimations(); }
+    if (motionToggle) {
+      motionToggle.setAttribute('aria-pressed', String(paused));
+      motionToggle.querySelector('.mt-label').textContent = paused ? motionToggle.dataset.play : motionToggle.dataset.pause;
+    }
+  };
+  if (motionToggle) {
+    let saved = false;
+    try { saved = localStorage.getItem('motion') === 'paused'; } catch (e) { /* storage blocked */ }
+    if (saved || !motionOk) setPaused(true);
+    motionToggle.addEventListener('click', () => {
+      const paused = !root.classList.contains('motion-paused');
+      setPaused(paused);
+      try { localStorage.setItem('motion', paused ? 'paused' : 'playing'); } catch (e) { /* storage blocked */ }
+    });
+  }
+
   /* ===== 6. Gauges ===== */
 
   /** Reads "130k", "12,034", "12.034", "60+", "130 mil" into parts we can count. */

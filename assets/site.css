@@ -1,4 +1,4 @@
-﻿/*
+/*
  * site.css — Igor Cruz portfolio
  * ---------------------------------------------------------------------------
  * Palette: obsidian black, machined gunmetal, ruby, gold.
@@ -956,6 +956,91 @@ main { display: grid; gap: clamp(96px, 11vw, 168px); }
   color: var(--ink-soft);
 }
 
+.contact-links { display: flex; flex-wrap: wrap; gap: 8px 26px; font-weight: 600; }
+.contact-links a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ===== Flow diagrams in the featured cases =====
+ * Stages read left to right on a gold rail; a pulse runs along each link.
+ * The ruby stage is the decision point. Vertical on narrow screens. */
+.flowline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 30px;
+  margin: 6px 0 4px;
+  padding: 22px 20px;
+  border-radius: var(--r-panel);
+  background: var(--steel-1);
+  box-shadow: var(--neu-press);
+}
+.stage { position: relative; display: grid; align-content: center; gap: 8px; }
+.stage + .stage::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi), var(--gold-deep));
+  background-size: 200% 100%;
+  animation: link-flow 1.6s linear infinite;
+  animation-delay: calc(var(--i) * 0.25s);
+}
+@keyframes link-flow { to { background-position: -200% 0; } }
+.fnode {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--ink);
+  background: linear-gradient(155deg, var(--steel-3), var(--steel-2));
+  box-shadow: var(--neu-raise-sm), inset 1px 1px 0 var(--bevel-hi), inset 0 0 0 1px rgb(217 173 75 / 0.2);
+}
+.stage.is-gate .fnode {
+  color: #fff;
+  background: radial-gradient(130% 170% at 28% 18%, #ff8aa5 0%, #ec2d5a 32%, #b5113a 70%, #6c0620 100%);
+  box-shadow: 0 10px 22px -6px rgb(214 29 75 / 0.55), inset -3px -4px 8px rgb(60 0 15 / 0.5), inset 3px 4px 8px rgb(255 205 216 / 0.45), 0 0 0 2px #c69a3e;
+}
+
+/* ===== Real tool icons ===== */
+.tool-group li { display: inline-flex; align-items: center; gap: 8px; }
+.tool-ic { width: auto; height: 18px; max-width: 64px; flex: none; object-fit: contain; }
+:root:not([data-theme="platinum"]) .tool-ic.is-ink { filter: invert(1) brightness(1.6); }
+
+/* ===== Pause control for the looping animations (WCAG 2.2.2) ===== */
+.motion-toggle {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px 0 12px;
+  border: 0;
+  border-radius: var(--r-pill);
+  color: var(--ink-soft);
+  font: 600 0.8rem/1 var(--font-body);
+  cursor: pointer;
+  background: var(--steel-1);
+  box-shadow: var(--neu-press-sm);
+}
+.motion-toggle:hover { color: var(--ink); }
+.mt-icon { position: relative; width: 10px; height: 12px; }
+.mt-icon::before, .mt-icon::after { content: ""; position: absolute; top: 0; width: 3px; height: 12px; border-radius: 1px; background: currentColor; }
+.mt-icon::before { left: 1px; } .mt-icon::after { right: 1px; }
+/* Paused: the icon becomes a play triangle */
+.motion-toggle[aria-pressed="true"] .mt-icon::before { left: 1px; width: 0; height: 0; border-radius: 0; background: none; border-left: 10px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+.motion-toggle[aria-pressed="true"] .mt-icon::after { display: none; }
+
+.motion-paused .ch-flow, .motion-paused .hud-dot, .motion-paused .stage::before,
+.motion-paused .gem-glow { animation-play-state: paused !important; }
+
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass { background: var(--steel-2); }
 }
@@ -975,6 +1060,9 @@ main { display: grid; gap: clamp(96px, 11vw, 168px); }
   .feature { grid-template-columns: minmax(0, 1fr); }
   .feature-story, .story { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .feature-story { grid-template-areas: "problem" "did" "result"; }
+  .flowline { grid-auto-flow: row; grid-auto-columns: auto; gap: 26px; }
+  .stage + .stage::before { left: 50%; top: -26px; width: 2px; height: 26px; background: linear-gradient(180deg, var(--gold-deep), var(--gold-hi), var(--gold-deep)); background-size: 100% 200%; animation-name: link-flow-v; }
+  @keyframes link-flow-v { to { background-position: 0 -200%; } }
 }
 
 @media (max-width: 720px) {
@@ -992,6 +1080,7 @@ main { display: grid; gap: clamp(96px, 11vw, 168px); }
   .actions .btn { flex: 1 1 auto; }
   .actions .btn-quiet { flex: 0 0 auto; }
   .hud { position: relative; right: auto; bottom: auto; width: auto; margin: 14px 0 0; transform: none; }
+  .motion-toggle { position: relative; top: auto; left: auto; transform: none; margin-top: 12px; }
   .gem-label { font-size: 21px; }
   .gem-note { font-size: 15px; }
   .obj-ruby { width: 140px; height: 140px; }

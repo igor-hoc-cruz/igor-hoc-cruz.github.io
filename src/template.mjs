@@ -19,7 +19,19 @@
  * ---------------------------------------------------------------------------
  */
 
-import { SITE_URL, EMAIL, GITHUB, LANGS, casesFor } from './content.mjs';
+import { SITE_URL, EMAIL, GITHUB, LINKEDIN, LANGS, casesFor } from './content.mjs';
+
+/* Real tool icons (local files from the taste-skill icon resolver, CC0/MIT).
+ * Tools with no licensed icon (Elementor, GoHighLevel, Apps Script) stay text. */
+const TOOL_ICONS = {
+  'n8n': 'n8n', 'Zapier': 'zapier', 'Zoho CRM': 'zoho', 'Zoho Sign': 'zoho', 'Zoho Analytics': 'zoho',
+  'Zoho Marketing Automation': 'zoho', 'WordPress': 'wordpress', 'Meta Ads': 'meta', 'TikTok Ads API': 'tiktok',
+  'Google Tag Manager': 'google-tag-manager', 'Postgres': 'postgres', 'Claude and Claude Code': 'claude',
+  'Claude e Claude Code': 'claude', 'MCP connectors': 'mcp', 'Conectores MCP': 'mcp', 'Python': 'python', 'Go': 'go',
+  'Node.js': 'nodejs', 'Git': 'git-icon', 'PHP': 'php', 'JavaScript': 'javascript', 'HTML and CSS': 'html',
+  'HTML e CSS': 'html', 'Twilio': 'twilio', 'WhatsApp gateways': 'whatsapp', 'Gateways de WhatsApp': 'whatsapp',
+};
+const INK_ICONS = new Set(['wordpress', 'mcp']); // black marks: turned light on the dark theme
 
 /* ===== Helpers ========================================================== */
 
@@ -50,6 +62,21 @@ function head(t, lang, root) {
 <meta property="og:description" content="${esc(t.description)}">
 <meta property="og:url" content="${url}">
 <meta property="og:locale" content="${lang === 'pt' ? 'pt_BR' : 'en_US'}">
+<meta property="og:image" content="${SITE_URL}/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Igor Henrique de Oliveira Cruz',
+    jobTitle: t.hero.kicker,
+    url: url,
+    email: `mailto:${EMAIL}`,
+    address: { '@type': 'PostalAddress', addressLocality: 'Jundiaí', addressRegion: 'SP', addressCountry: 'BR' },
+    knowsLanguage: ['en', 'pt', 'es'],
+    sameAs: [GITHUB, LINKEDIN],
+  })}</script>
 <meta name="theme-color" content="#09090b">
 <link rel="icon" href="${root}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,7 +188,7 @@ function consoleSvg(t) {
 
 /* ===== Hero ============================================================= */
 
-function hero(t) {
+function hero(t, root) {
   const facts = t.hero.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
   const hud = t.console.hud.map((h, i) => `<li data-i="${i}">${esc(h)}</li>`).join('');
   const srList = t.console.nodes.map((n, i) => `<li>${esc(n)}: ${esc(t.console.notes[i])}</li>`).join('');
@@ -173,7 +200,7 @@ function hero(t) {
       ${t.hero.intro.map((p) => `<p class="hero-intro">${esc(p)}</p>`).join('\n      ')}
       <div class="actions">
         <a class="btn btn-ruby" href="mailto:${EMAIL}">${esc(t.hero.ctaEmail)}</a>
-        <button class="btn btn-metal copy-email" type="button" data-email="${EMAIL}" data-done="${esc(t.hero.ctaCopied)}">${esc(t.hero.ctaCopy)}</button>
+        <a class="btn btn-metal" href="${root}${t.hero.cvFile}" type="application/pdf">${esc(t.hero.ctaCv)}</a>
         <a class="btn btn-quiet" href="#work">${esc(t.hero.ctaWork)}</a>
       </div>
       <dl class="facts">${facts}</dl>
@@ -188,6 +215,9 @@ function hero(t) {
         <span class="screw s3" aria-hidden="true"></span><span class="screw s4" aria-hidden="true"></span>
         ${consoleSvg(t)}
         <ol class="sr-only">${srList}</ol>
+        <button class="motion-toggle" type="button" aria-pressed="false" data-pause="${esc(t.hero.pause)}" data-play="${esc(t.hero.play)}">
+          <span class="mt-icon" aria-hidden="true"></span><span class="mt-label">${esc(t.hero.pause)}</span>
+        </button>
         <div class="hud glass" aria-hidden="true">
           <p class="hud-title"><span class="hud-dot"></span>${esc(t.console.hudTitle)}</p>
           <ol class="hud-steps">${hud}</ol>
@@ -244,13 +274,23 @@ function stepsList(items) {
   return `<ul class="did">${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
 }
 
+/** A left-to-right flow of stages; a stage with several nodes is a branch. */
+function flowLine(t, flow) {
+  if (!flow) return '';
+  const stages = flow.stages.map((nodes, i) => `
+          <li class="stage${i === flow.gate ? ' is-gate' : ''}" style="--i:${i}">${nodes.map((n) => `<span class="fnode">${esc(n)}</span>`).join('')}</li>`).join('');
+  return `
+        <ol class="flowline" aria-label="${esc(t.hero.flowLabel)}">${stages}
+        </ol>`;
+}
+
 function featuredCase(t, c, tagName) {
   return `
     <article class="feature metal spot" id="case-${c.id}" data-tag="${c.tag}">
       <div class="feature-main">
         <div class="case-meta">${statusBadge(t, c.status)}<span class="case-tag">${esc(tagName[c.tag])}</span></div>
         <h3 class="feature-title">${esc(c.title)}</h3>
-        <p class="feature-summary">${esc(c.summary)}</p>
+        <p class="feature-summary">${esc(c.summary)}</p>${flowLine(t, c.flow)}
         <div class="feature-story">
           <section><h4>${esc(t.work.parts.problem)}</h4><p>${esc(c.problem)}</p></section>
           <section><h4>${esc(t.work.parts.did)}</h4>${stepsList(c.did)}</section>
@@ -338,11 +378,15 @@ function processSection(t) {
   </section>`;
 }
 
-function toolbox(t) {
+function toolbox(t, root) {
   const groups = t.toolbox.groups.map(([name, items]) => `
       <div class="tool-group">
         <h3>${esc(name)}</h3>
-        <ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+        <ul>${items.map((i) => {
+          const ic = TOOL_ICONS[i];
+          const img = ic ? `<img class="tool-ic${INK_ICONS.has(ic) ? ' is-ink' : ''}" src="${root}assets/icons/${ic}.svg" alt="" width="18" height="18" loading="lazy">` : '';
+          return `<li>${img}${esc(i)}</li>`;
+        }).join('')}</ul>
       </div>`).join('');
   return `<section class="toolbox" id="toolbox" aria-labelledby="toolbox-title">
     <div class="section-head">
@@ -364,7 +408,7 @@ function principles(t) {
   </section>`;
 }
 
-function contact(t) {
+function contact(t, root) {
   return `<section class="stage stage-contact" id="contact" aria-labelledby="contact-title">
     <span class="obj obj-ruby" aria-hidden="true"></span>
     <span class="obj obj-ring" aria-hidden="true"></span>
@@ -374,8 +418,12 @@ function contact(t) {
       <div class="actions">
         <a class="btn btn-ruby" href="mailto:${EMAIL}">${EMAIL}</a>
         <button class="btn btn-metal copy-email" type="button" data-email="${EMAIL}" data-done="${esc(t.hero.ctaCopied)}">${esc(t.hero.ctaCopy)}</button>
-        <a class="btn btn-quiet" href="${GITHUB}">${esc(t.contact.github)}</a>
+        <a class="btn btn-metal" href="${root}${t.hero.cvFile}" type="application/pdf">${esc(t.hero.ctaCv)}</a>
       </div>
+      <p class="contact-links">
+        <a href="${LINKEDIN}" rel="me">${esc(t.hero.linkedin)}</a>
+        <a href="${GITHUB}" rel="me">${esc(t.contact.github)}</a>
+      </p>
     </div>
   </section>`;
 }
@@ -393,14 +441,14 @@ ${head(t, lang, root)}
 <div class="page">
 ${header(t, lang)}
 <main id="main">
-  ${hero(t)}
+  ${hero(t, root)}
   ${gauges(t)}
   ${capabilities(t)}
   ${work(t, lang)}
   ${processSection(t)}
-  ${toolbox(t)}
+  ${toolbox(t, root)}
   ${principles(t)}
-  ${contact(t)}
+  ${contact(t, root)}
 </main>
 <footer class="foot">
   <p>${esc(t.footer)}</p>
