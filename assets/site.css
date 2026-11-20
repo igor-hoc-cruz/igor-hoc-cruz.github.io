@@ -825,8 +825,6 @@ main { display: grid; gap: clamp(96px, 11vw, 168px); }
 .case-toggle[aria-expanded="true"] .case-knob { transform: rotate(180deg) scale(0.94); }
 .case-toggle[aria-expanded="true"] .case-knob::after { transform: rotate(0deg); }
 
-.case-metric { color: var(--ink-soft); font-size: var(--size-small); }
-.case-metric strong { font: 800 1.6rem/1 var(--font-display); font-variation-settings: "wdth" 80; margin-right: 4px; }
 .case-summary { color: var(--ink-soft); max-width: 72ch; }
 
 /* Smooth open and close: the row grows from 0fr to 1fr */

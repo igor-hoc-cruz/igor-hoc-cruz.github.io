@@ -311,14 +311,13 @@ function caseKey(t, c, tagName) {
   const bodyId = `case-${c.id}-body`;
   return `
     <article class="case metal spot" id="case-${c.id}" data-tag="${c.tag}">
-      <div class="case-meta">${statusBadge(t, c.status)}<span class="case-tag">${esc(tagName[c.tag])}</span></div>
+      <div class="case-meta"><span class="case-tag">${esc(tagName[c.tag])}</span></div>
       <h3 class="case-title">
         <button class="case-toggle" type="button" aria-expanded="true" aria-controls="${bodyId}" data-open="${esc(t.work.open)}" data-close="${esc(t.work.close)}">
           <span class="case-title-text">${esc(c.title)}</span>
           <span class="case-knob" aria-hidden="true"></span>
         </button>
       </h3>
-      ${c.metric ? `<p class="case-metric"><strong class="gold-text">${esc(c.metric.value)}</strong> ${esc(c.metric.label)}</p>` : ''}
       <p class="case-summary">${esc(c.summary)}</p>
       <div class="case-body" id="${bodyId}">
         <div class="case-body-inner">
